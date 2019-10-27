@@ -1,0 +1,11 @@
+@mixin device-mobile {
+  @media screen and (min-width: #{$screen-small}) {
+    @content;
+  }
+}
+
+@mixin device-desktop {
+  @media screen and (min-width: #{$screen-large}) {
+    @content;
+  }
+}
