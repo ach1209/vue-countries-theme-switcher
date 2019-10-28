@@ -1,0 +1,78 @@
+<template>
+  <header class="main-header" :class="[toggleDark ? 'dark-mode' : 'light-mode']">
+    <a href="/" class="main-header__title">Where in the world?</a>
+    <div class="mode-toggle" @click="switchMode">
+      <div v-if="!toggleDark" class="mode-toggle--dark">
+        <MoonIcon></MoonIcon>
+        <span>Dark Mode</span>
+      </div>
+      <div v-else class="mode-toggle--light">
+        <SunIcon></SunIcon>
+        <span>Light Mode</span>
+      </div>
+    </div>
+  </header>
+</template>
+
+<script>
+import { SunIcon, MoonIcon } from 'vue-feather-icons'
+
+export default {
+  name: 'AppHeader',
+  components: {
+    SunIcon,
+    MoonIcon
+  },
+  data() {
+    return {
+      toggleDark: false
+    }
+  },
+  methods: {
+    switchMode: function() {
+      this.toggleDark = !this.toggleDark;
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+
+.main-header {
+  width: 100%;
+  height: 6.4rem;
+  padding: 0 2rem;
+  box-shadow: 0px 2px 2px rgba(0,0,0, 0.12);  
+  @include flex-center-align;
+  justify-content: space-between;
+
+  @include device-desktop {
+    padding: 0 7rem; 
+  }
+
+  &__title {
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: inherit;
+
+    @include device-desktop {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+.mode-toggle {
+  &--light,
+  &--dark {
+    cursor: pointer;
+    font-weight: 600;
+    @include flex-center-align;
+
+    span {
+      margin-left: 10px;
+    }
+  }
+}
+
+</style>

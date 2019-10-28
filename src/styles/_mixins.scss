@@ -9,3 +9,8 @@
     @content;
   }
 }
+
+@mixin flex-center-align {
+  display: flex;
+  align-items: center;
+}
