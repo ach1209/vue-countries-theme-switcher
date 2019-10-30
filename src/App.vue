@@ -2,16 +2,19 @@
   <div id="app">
     <AppHeader></AppHeader>
     <h1>Hello World!</h1>
+    <InfoCard></InfoCard>
   </div>
 </template>
 
 <script>
 import AppHeader from './components/AppHeader';
+import InfoCard from './components/common/InfoCard';
 
 export default {
   name: 'app',
   components: {
-    AppHeader
+    AppHeader,
+    InfoCard
   }
 }
 </script>
