@@ -1,11 +1,19 @@
 <template>
   <div class="card">
-    <img class="card__image" src="https://restcountries.eu/data/afg.svg"/>
+    <slot name="image"></slot>
     <div class="card__details">
-      <h3 class="card__heading">Afghanistan</h3>
-      <p class="card__text--top"><b>Population:</b> 27657145</p>
-      <p class="card__text--middle"><b>Region:</b> Asia</p>
-      <p class="card__text--bottom"><b>Capital:</b> Kabul</p>
+      <h3 class="card__heading">
+        <slot name="heading"></slot>
+      </h3>
+      <p class="card__text--top">
+        <b>Population:</b> <slot name="population"></slot>
+      </p>
+      <p class="card__text--middle">
+        <b>Region:</b> <slot name="region"></slot>
+      </p>
+      <p class="card__text--bottom">
+        <b>Capital:</b> <slot name="capital"></slot>
+      </p>
     </div>
   </div>
 </template>

@@ -1,8 +1,25 @@
 <template>
   <div id="app">
     <AppHeader></AppHeader>
-    <h1>Hello World!</h1>
-    <InfoCard></InfoCard>
+    <div class="content">
+      <InfoCard v-for="country in countries" :key="country.id">
+        <template v-slot:image>
+          <img class="card__image" :src="country.flag"/>
+        </template>        
+        <template v-slot:heading>
+          {{ country.name }}
+        </template>
+        <template v-slot:population>
+          {{ country.population }}
+        </template>
+        <template v-slot:region>
+          {{ country.region }}
+        </template>
+        <template v-slot:capital>
+          {{ country.capital }}
+        </template>
+      </InfoCard>
+    </div>
   </div>
 </template>
 
@@ -10,11 +27,31 @@
 import AppHeader from './components/AppHeader';
 import InfoCard from './components/common/InfoCard';
 
+import axios from 'axios'
+
 export default {
   name: 'app',
   components: {
     AppHeader,
     InfoCard
+  },
+  data() {
+    return {
+      countries: [],
+      displayCount: 10   
+    }
+  },
+  created() {
+    const url = 'https://restcountries.eu/rest/v2/all?fields=name;capital;population;region;flag;borders'
+    axios.get(url).then(response => {
+      let output = response.data;
+      // output has 250 items
+      // limiting the amount being added to countries array
+      for(let i = 0; i < this.displayCount; i++) {
+        this.countries.push(output[i]);
+      }
+      console.log(this.countries);
+    })
   }
 }
 </script>
