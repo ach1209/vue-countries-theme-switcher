@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <AppHeader></AppHeader>
-    <div class="content">
+    <div class="card-deck">
       <InfoCard v-for="country in countries" :key="country.id">
         <template v-slot:image>
           <img class="card__image" :src="country.flag"/>
@@ -71,6 +71,19 @@ html {
 body {
   font-family: 'Nunito Sans', sans-serif;
   font-size: 1.6rem;
+}
+
+.card-deck {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  grid-template-rows: max-content;
+  grid-gap: 5rem;
+
+  @include device-desktop {
+    width: 120rem;
+    margin: 0 auto;
+  }
 }
 
 </style>
