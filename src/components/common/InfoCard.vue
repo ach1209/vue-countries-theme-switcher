@@ -34,6 +34,7 @@ export default {
   border-radius: 5px;
 
   &__image {
+    flex: 1;
     width: 100%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
