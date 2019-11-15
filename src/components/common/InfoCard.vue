@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" :class="[isToggled ? 'dark-mode' : 'light-mode']">
     <slot name="image"></slot>
     <div class="card__details">
       <h3 class="card__heading">
@@ -19,8 +19,20 @@
 </template>
 
 <script>
+import { eventBus } from '../../main'
+
 export default {
-  name: 'InfoCard'
+  name: 'InfoCard',
+  data() {
+    return {
+      isToggled: false
+    }
+  },
+  created() {
+    eventBus.$on('toggleMode', (data) => {
+      this.isToggled = data;
+    });
+  }
 }
 </script>
 

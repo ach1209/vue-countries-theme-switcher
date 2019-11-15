@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <AppHeader></AppHeader>
-    <div class="card-deck">
+    <div class="card-deck" @toggleMode="isToggled = $event">
       <InfoCard v-for="country in countries" :key="country.id">
         <template v-slot:image>
           <img class="card__image" :src="country.flag"/>
@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       countries: [],
-      displayCount: 10   
+      displayCount: 10
     }
   },
   created() {

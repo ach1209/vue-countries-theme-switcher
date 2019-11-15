@@ -1,8 +1,8 @@
 <template>
-  <header class="main-header" :class="[toggleDark ? 'dark-mode' : 'light-mode']">
+  <header class="main-header" :class="[isToggled ? 'dark-mode' : 'light-mode']">
     <a href="/" class="main-header__title">Where in the world?</a>
     <div class="mode-toggle" @click="switchMode">
-      <div v-if="!toggleDark" class="mode-toggle--dark">
+      <div v-if="!isToggled" class="mode-toggle--dark">
         <MoonIcon></MoonIcon>
         <span>Dark Mode</span>
       </div>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { eventBus } from '../main'
 import { SunIcon, MoonIcon } from 'vue-feather-icons'
 
 export default {
@@ -25,12 +26,13 @@ export default {
   },
   data() {
     return {
-      toggleDark: false
+      isToggled: false
     }
   },
   methods: {
     switchMode: function() {
-      this.toggleDark = !this.toggleDark;
+      this.isToggled = !this.isToggled;
+      eventBus.$emit('toggleMode', this.isToggled);
     }
   }
 }
