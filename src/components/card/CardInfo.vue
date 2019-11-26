@@ -1,5 +1,5 @@
 <template>
-  <div class="card" :class="[isToggled ? 'dark-mode' : 'light-mode']">
+  <div class="card" :class="[isToggled ? 'dark-mode' : '']">
     <slot name="image"></slot>
     <div class="card__details">
       <h3 class="card__heading">
@@ -22,7 +22,7 @@
 import { eventBus } from '../../main'
 
 export default {
-  name: 'InfoCard',
+  name: 'CardInfo',
   data() {
     return {
       isToggled: false
@@ -46,8 +46,8 @@ export default {
   border-radius: 5px;
 
   &__image {
-    flex: 1;
     width: 100%;
+    height: 17rem;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
   }

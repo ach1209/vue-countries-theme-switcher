@@ -1,5 +1,5 @@
 <template>
-  <header class="main-header" :class="[isToggled ? 'dark-mode' : 'light-mode']">
+  <header class="main-header" :class="[isToggled ? 'dark-mode' : '']">
     <a href="/" class="main-header__title">Where in the world?</a>
     <div class="mode-toggle" @click="switchMode">
       <div v-if="!isToggled" class="mode-toggle--dark">
