@@ -8,7 +8,7 @@
         {{ country.name }}
       </template>
       <template v-slot:population>
-        {{ country.population }}
+        {{ country.population.toLocaleString() }}
       </template>
       <template v-slot:region>
         {{ country.region }}
@@ -68,7 +68,7 @@ export default {
 
   @include device-desktop {
     margin: 0 auto;
-    padding: 5rem;
+    padding: 5rem 15rem;
   }
 }
 

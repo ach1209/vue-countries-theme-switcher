@@ -42,7 +42,7 @@ export default {
   width: 25rem;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 4px 1px rgba(204,204,204,1);
+  box-shadow: 0px 0px 4px 1px $boxShadowLight;
   border-radius: 5px;
 
   &__image {
