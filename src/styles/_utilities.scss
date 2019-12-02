@@ -7,3 +7,9 @@
     background-color: $heavyDark;
   }
 }
+
+.light-mode {
+  color: $fontColorLightM;
+  background-color: $lightMode;
+  box-shadow: 0px 0px 4px 1px $boxShadowLight
+} 

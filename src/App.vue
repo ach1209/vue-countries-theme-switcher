@@ -1,19 +1,17 @@
 <template>
   <div id="app">
     <AppHeader></AppHeader>
-    <CardDeck></CardDeck>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import AppHeader from './components/AppHeader';
-import CardDeck from './components/card/CardDeck';
 
 export default {
   name: 'app',
   components: {
-    AppHeader,
-    CardDeck
+    AppHeader
   }
 }
 </script>

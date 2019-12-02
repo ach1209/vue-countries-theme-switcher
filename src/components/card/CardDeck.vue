@@ -1,36 +1,29 @@
 <template>
   <div class="card-deck" @toggleMode="isToggled = $event" :class="[isToggled ? 'dark-mode--alt' : '']">
-    <CardInfo v-for="country in countries" :key="country.id">
-      <template v-slot:image>
-        <img class="card__image" :src="country.flag"/>
-      </template>        
-      <template v-slot:heading>
-        {{ country.name }}
-      </template>
-      <template v-slot:population>
-        {{ country.population.toLocaleString() }}
-      </template>
-      <template v-slot:region>
-        {{ country.region }}
-      </template>
-      <template v-slot:capital>
-        {{ country.capital }}
-      </template>
-    </CardInfo>
+    <router-link :to="{name: 'card-profile'}" class="card" v-for="country in countries" :key="country.id" :class="[isToggled ? 'dark-mode' : 'light-mode']">
+      <img class="card__image" :src="country.flag"/>
+      <div class="card__details">
+        <h3 class="card__heading">{{ country.name }}</h3>
+        <p class="card__text--top">
+          <b>Population:</b> {{ country.population.toLocaleString() }}
+        </p>
+        <p class="card__text--middle">
+          <b>Region:</b> {{ country.region }}
+        </p>
+        <p class="card__text--bottom">
+          <b>Capital:</b> {{ country.capital }}
+        </p>
+      </div>
+    </router-link>
   </div>
 </template>
 
 <script>
-import CardInfo from './CardInfo'
-
 import { eventBus } from '../../main'
 import axios from 'axios'
 
 export default {
   name: 'CardDeck',
-  components: {
-    CardInfo
-  },
   data() {
     return {
       countries: [],
@@ -69,6 +62,35 @@ export default {
   @include device-desktop {
     margin: 0 auto;
     padding: 5rem 15rem;
+  }
+}
+
+.card {
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  text-decoration: none;
+
+  &__image {
+    width: 100%;
+    height: 17rem;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  &__details {
+    padding: 2rem 2rem 4rem 2rem;
+  }
+
+  &__heading {
+    margin-bottom: 2rem;
+  }
+
+  &__text--top,
+  &__text--middle,
+  &__text--bottom {
+    line-height: 2.5rem;
   }
 }
 

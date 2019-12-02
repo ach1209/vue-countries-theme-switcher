@@ -1,6 +1,6 @@
 <template>
   <header class="main-header" :class="[isToggled ? 'dark-mode' : '']">
-    <a href="/" class="main-header__title">Where in the world?</a>
+    <router-link :to="{name: 'home'}" class="main-header__title">Where in the world?</router-link>
     <div class="mode-toggle" @click="switchMode">
       <div v-if="!isToggled" class="mode-toggle--dark">
         <MoonIcon></MoonIcon>
