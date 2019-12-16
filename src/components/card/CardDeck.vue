@@ -1,6 +1,6 @@
 <template>
   <div class="card-deck" @toggleMode="isToggled = $event" :class="[isToggled ? 'dark-mode--alt' : '']">
-    <router-link :to="{name: 'card-profile'}" class="card" v-for="country in countries" :key="country.id" :class="[isToggled ? 'dark-mode' : 'light-mode']">
+    <router-link :to="{name: 'country', params: { id: country.name }}" v-for="country in countries" :key="country.id" :class="[isToggled ? 'dark-mode' : 'light-mode']" class="card">
       <img class="card__image" :src="country.flag"/>
       <div class="card__details">
         <h3 class="card__heading">{{ country.name }}</h3>
@@ -20,7 +20,7 @@
 
 <script>
 import { eventBus } from '../../main'
-import axios from 'axios'
+import { Api } from '@/service/api'
 
 export default {
   name: 'CardDeck',
@@ -32,8 +32,7 @@ export default {
     }
   },
   created() {
-    const url = 'https://restcountries.eu/rest/v2/all?fields=name;capital;population;region;flag;borders'
-    axios.get(url).then(response => {
+    Api.get('?fields=name;capital;population;region;flag;borders').then(response => {
       let output = response.data;
       // output has 250 items
       // limiting the amount being added to countries array
@@ -41,6 +40,8 @@ export default {
         this.countries.push(output[i]);
       }
       console.log(this.countries);
+    }).catch(errors => {
+      console.log(errors);
     });
 
     eventBus.$on('toggleMode', (data) => {

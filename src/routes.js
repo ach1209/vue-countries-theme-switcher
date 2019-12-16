@@ -8,9 +8,10 @@ const routes = [
     name: 'home'
   },
   {
-    path: '/card-profile',
+    path: '/country/:id',
     component: CardProfile,
-    name: 'card-profile'
+    name: 'country',
+    params: true
   }
 ];
 
