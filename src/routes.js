@@ -1,7 +1,7 @@
 import CardDeck from './components/card/CardDeck.vue';
 import CardProfile from './components/card/CardProfile.vue';
 
-const routes = [
+export const routes = [
   {
     path: '/',
     component: CardDeck,
@@ -14,5 +14,3 @@ const routes = [
     params: true
   }
 ];
-
-export default routes;

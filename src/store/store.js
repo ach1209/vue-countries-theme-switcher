@@ -1,13 +1,25 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { Api } from '@/service/api'
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    countries: ''
+    countries: []
   },
   mutations: {
-
+    setCountries(state, countries) {
+      state.countries = countries;
+    }
+  },
+  actions: {
+    loadCountries({commit}) {
+      return Api.get('?fields=name;capital;population;region;flag;borders').then((response) => {
+        commit('setCountries', response.data);
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
   }
-}) 
+})

@@ -12,6 +12,9 @@ export default {
   name: 'app',
   components: {
     AppHeader
+  },
+  created() {
+    this.$store.dispatch('loadCountries');
   }
 }
 </script>
