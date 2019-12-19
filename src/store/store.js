@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { Api } from '@/service/api'
+import Api from '@/service/api'
 
 Vue.use(Vuex)
 
-export const store = new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     countries: []
   },
@@ -21,8 +21,7 @@ export const store = new Vuex.Store({
         console.log(error);
       });
     }
-  },
-  getters: {
-    countryDetails: state => state.countries
   }
 })
+
+export default store;
