@@ -15,11 +15,14 @@ export const store = new Vuex.Store({
   },
   actions: {
     loadCountries({commit}) {
-      return Api.get('?fields=name;capital;population;region;flag;borders').then((response) => {
+      return Api.get('?fields=name;capital;population;region;flag;borders;languages;currencies;nativeName;topLevelDomain;subregion').then((response) => {
         commit('setCountries', response.data);
       }).catch((error) => {
         console.log(error);
       });
     }
+  },
+  getters: {
+    countryDetails: state => state.countries
   }
 })
