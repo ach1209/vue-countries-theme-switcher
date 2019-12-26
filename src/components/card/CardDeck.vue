@@ -62,6 +62,12 @@ export default {
   flex-direction: column;
   border-radius: 5px;
   text-decoration: none;
+  transition: transform cubic-bezier(.34,.1,1,1.4) 0.3s;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
 
   &__image {
     width: 100%;
