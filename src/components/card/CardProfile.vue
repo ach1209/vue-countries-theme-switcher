@@ -1,16 +1,39 @@
 <template>
   <div class="card-profile">
-    <router-link :to="{name: 'home'}" class="btn__return">
+    <router-link :to="{name: 'home'}" class="btn">
       <ArrowLeftIcon></ArrowLeftIcon>
       <span>Back</span>
     </router-link>
     <div class="card-profile-content">
       <img :src="countries.flag" class="card-profile__image"/>
       <div class="card-profile-content--right">
-        <p>{{ this.$route.params.id }}</p>
-        <p>{{ countries }}</p>
+        <div class="column">
+          <h1>{{ countries.name }}</h1>
+          <p><b>Native Name:</b> {{ countries.nativeName }}</p>
+          <p><b>Population:</b> {{ countries.population.toLocaleString() }}</p>
+          <p><b>Region:</b> {{ countries.region }}</p>
+          <p><b>Sub Region:</b> {{ countries.subregion }}</p>
+          <p><b>Capital:</b> {{ countries.capital }}</p>
+        </div>
+        <div class="column">
+          <p v-for="topLevel in countries.topLevelDomain" :key="topLevel.id">
+            <b>Top Level Domain:</b> {{ topLevel }}
+          </p>
+          <p v-for="currency in countries.currencies" :key="currency.id">
+            <b>Currencies:</b> {{ currency.name }}
+          </p>
+          <p>
+            <b>Languages:</b> 
+            <span v-for="(language, index) in countries.languages" :key="language.id"><span v-if="index != 0">, </span> {{ language.name }}</span>
+          </p>
+        </div>
+        <div v-if="countries.borders != ''" class="row">
+          <b>Border Countries:</b>
+          <router-link :to="{name: 'home'}" v-for="border in countries.borders" :key="border.id" class="btn">{{ border }}</router-link>
+        </div>
       </div>
     </div>
+    <p>{{ countries }}</p>
   </div>
 </template>
 
@@ -53,24 +76,6 @@ export default {
 
   &__image {
     width: 100%;
-  }
-}
-
-.btn__return {
-  @include flex-center-align;
-  width: 15rem;
-  padding: 1rem 2rem;
-  justify-content: space-evenly;
-  border-radius: 3px;
-  color: $fontColorLightM;
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 1px 3px 1px rgba($boxShadowLight, 0.82);
-  transition: background-color cubic-bezier(.34,.1,1,1.4) 0.3s;
-
-  &:hover,
-  &:focus {
-    background-color: rgba($bgHover, 0.45);
   }
 }
 
