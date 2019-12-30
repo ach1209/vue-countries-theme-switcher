@@ -2,11 +2,11 @@
   <header class="main-header" :class="[isToggled ? 'dark-mode' : '']">
     <router-link :to="{name: 'home'}" class="main-header__title">Where in the world?</router-link>
     <div class="mode-toggle" @click="switchMode">
-      <div v-if="!isToggled" class="mode-toggle--dark">
+      <div v-if="!isToggled" class="mode-toggle--dark fw--600">
         <MoonIcon></MoonIcon>
         <span>Dark Mode</span>
       </div>
-      <div v-else class="mode-toggle--light">
+      <div v-else class="mode-toggle--light fw--600">
         <SunIcon></SunIcon>
         <span>Light Mode</span>
       </div>
@@ -68,7 +68,6 @@ export default {
   &--light,
   &--dark {
     cursor: pointer;
-    font-weight: 600;
     @include flex-center-align;
 
     span {

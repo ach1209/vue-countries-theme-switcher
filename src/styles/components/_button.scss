@@ -14,4 +14,11 @@
   &:focus {
     background-color: rgba($bgHover, 0.45);
   }
+
+  &--mini {
+    width: 10rem;
+    padding: 0.5rem;
+    margin: 1.5rem;
+    margin-left: 0;
+  }
 }

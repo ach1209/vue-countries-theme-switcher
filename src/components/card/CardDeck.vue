@@ -3,7 +3,7 @@
     <router-link :to="{name: 'country', params: { id: country.name }}" v-for="country in showCountries" :key="country.id" :class="[isToggled ? 'dark-mode' : 'light-mode']" class="card">
       <img class="card__image" :src="country.flag"/>
       <div class="card__details">
-        <h3 class="card__heading">{{ country.name }}</h3>
+        <h3 class="mg-bottom">{{ country.name }}</h3>
         <p class="card__text--top">
           <b>Population:</b> {{ country.population.toLocaleString() }}
         </p>
@@ -78,10 +78,6 @@ export default {
 
   &__details {
     padding: 2rem 2rem 4rem 2rem;
-  }
-
-  &__heading {
-    margin-bottom: 2rem;
   }
 
   &__text--top,
