@@ -1,17 +1,26 @@
 <template>
-  <div class="card-deck" @toggleMode="isToggled = $event" :class="[isToggled ? 'dark-mode--alt' : '']">
-    <router-link :to="{name: 'country', params: { id: country.name }}" v-for="country in showCountries" :key="country.id" :class="[isToggled ? 'dark-mode' : 'light-mode']" class="card">
+  <div class="card-deck"
+    @toggleMode="isToggled = $event"
+    :class="[isToggled ? 'dark-mode--alt' : '']"
+  >
+    <router-link
+      :to="{name: 'country', params: { id: country.name }}"
+      v-for="country in showCountries"
+      :key="country.id"
+      :class="[isToggled ? 'dark-mode' : 'light-mode']" 
+      class="card"
+    >
       <img class="card__image" :src="country.flag"/>
       <div class="card__details">
         <h3 class="mg-bottom">{{ country.name }}</h3>
-        <p class="card__text--top">
-          <b>Population:</b> {{ country.population.toLocaleString() }}
+        <p class="lineH--3">
+          <span class="fw--600">Population:</span> {{ country.population.toLocaleString() }}
         </p>
-        <p class="card__text--middle">
-          <b>Region:</b> {{ country.region }}
+        <p class="lineH--3">
+          <span class="fw--600">Region:</span> {{ country.region }}
         </p>
-        <p class="card__text--bottom">
-          <b>Capital:</b> {{ country.capital }}
+        <p class="lineH--3">
+          <span class="fw--600">Capital:</span> {{ country.capital }}
         </p>
       </div>
     </router-link>
@@ -19,7 +28,8 @@
 </template>
 
 <script>
-import { eventBus } from '../../main'
+import { eventBus } from '../../main';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'CardDeck',
@@ -29,9 +39,7 @@ export default {
     }
   },
   computed: {
-    showCountries() {
-      return this.$store.state.countries
-    }
+    ...mapGetters(['showCountries'])
   },
   created() {
     eventBus.$on('toggleMode', (data) => {
@@ -78,12 +86,6 @@ export default {
 
   &__details {
     padding: 2rem 2rem 4rem 2rem;
-  }
-
-  &__text--top,
-  &__text--middle,
-  &__text--bottom {
-    line-height: 2.5rem;
   }
 }
 

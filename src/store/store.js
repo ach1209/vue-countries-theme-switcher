@@ -8,14 +8,18 @@ const store = new Vuex.Store({
   state: {
     countries: []
   },
+  getters: {
+    showCountries: state => state.countries
+  },
   mutations: {
     setCountries(state, countries) {
       state.countries = countries;
     }
   },
   actions: {
-    loadCountries({commit}) {
-      return Api.get('?fields=name;capital;population;region;flag;borders;languages;currencies;nativeName;topLevelDomain;subregion').then((response) => {
+    async loadCountries({commit}) {
+      let apiFields = '?fields=name;capital;population;region;flag;borders;languages;currencies;nativeName;topLevelDomain;subregion'
+      return Api.get(apiFields).then((response) => {
         commit('setCountries', response.data);
       }).catch((error) => {
         console.log(error);
