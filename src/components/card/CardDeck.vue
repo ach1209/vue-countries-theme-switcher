@@ -1,34 +1,18 @@
 <template>
-  <div class="card-deck"
-    @toggleMode="isToggled = $event"
-    :class="[isToggled ? 'dark-mode--alt' : '']"
-  >
-    <router-link
-      :to="{name: 'country', params: { id: country.name }}"
-      v-for="country in showCountries"
-      :key="country.id"
-      :class="[isToggled ? 'dark-mode' : 'light-mode']" 
-      class="card"
-    >
+  <div class="card-deck">
+    <router-link :to="{name: 'country', params: { id: country.name }}" v-for="country in showCountries" :key="country.id" class="card">
       <img class="card__image" :src="country.flag"/>
       <div class="card__details">
-        <h3 class="mg-bottom">{{ country.name }}</h3>
-        <p class="lineH--3">
-          <span class="fw--600">Population:</span> {{ country.population.toLocaleString() }}
-        </p>
-        <p class="lineH--3">
-          <span class="fw--600">Region:</span> {{ country.region }}
-        </p>
-        <p class="lineH--3">
-          <span class="fw--600">Capital:</span> {{ country.capital }}
-        </p>
+        <h3 class="card__title">{{ country.name }}</h3>
+        <p><span class="label">Population:</span> {{ country.population.toLocaleString() }}</p>
+        <p><span class="label">Region:</span> {{ country.region }}</p>
+        <p><span class="label">Capital:</span> {{ country.capital }}</p>
       </div>
     </router-link>
   </div>
 </template>
 
 <script>
-import { eventBus } from '../../main';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -40,11 +24,6 @@ export default {
   },
   computed: {
     ...mapGetters(['showCountries'])
-  },
-  created() {
-    eventBus.$on('toggleMode', (data) => {
-      this.isToggled = data;
-    });
   }
 }
 </script>
@@ -57,6 +36,7 @@ export default {
   grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   grid-template-rows: max-content;
   grid-gap: 5rem;
+  background-color: var(--bgColor2);
 
   @include device-desktop {
     margin: 0 auto;
@@ -68,14 +48,12 @@ export default {
   width: 25rem;
   display: flex;
   flex-direction: column;
+  color: var(--fontColor);
+  background-color: var(--bgColor);
   border-radius: 5px;
+  box-shadow: 0px 1px 2px rgba($black, 0.25);
   text-decoration: none;
   transition: transform cubic-bezier(.34,.1,1,1.4) 0.3s;
-
-  &:hover,
-  &:focus {
-    transform: scale(1.1);
-  }
 
   &__image {
     width: 100%;
@@ -86,6 +64,11 @@ export default {
 
   &__details {
     padding: 2rem 2rem 4rem 2rem;
+    line-height: 3rem;
+  }
+
+  &__title {
+    margin-bottom: 2rem;
   }
 }
 

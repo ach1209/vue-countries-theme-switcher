@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: Fix dark mode option -->
   <div class="select-container">
     <select v-model="selectedRegion" class="selections">
       <option value="" disabled selected>Filter by Region</option>
@@ -32,9 +31,10 @@ select::-ms-expand {
 .selections {
   width: 17rem;  
   padding: 1.3rem;
+  @include mode-colors;
   border: none;
   border-radius: 3px;
-  box-shadow: 0 1px 3px 1px rgba($boxShadowLight, 0.82);
+  box-shadow: 0 0px 2px rgba($black, 0.25);
 }
 
 input:focus::placeholder {

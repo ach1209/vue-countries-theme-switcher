@@ -1,5 +1,5 @@
 import CardDeck from './components/card/CardDeck.vue';
-import CardProfile from './components/card/CardProfile.vue';
+import CardProfile from './components/card/view/CardProfile.vue';
 
 const routes = [
   {

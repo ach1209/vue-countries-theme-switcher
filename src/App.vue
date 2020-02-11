@@ -1,10 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" data-theme="light-mode">
     <AppHeader></AppHeader>
-    <div 
-      v-if="$route.name === 'home'" 
-      class="filters"
-    >
+    <div v-if="$route.name === 'home'" class="filters">
       <SearchFilter></SearchFilter>
       <DropdownFilter></DropdownFilter>
     </div>
@@ -48,19 +45,32 @@ body {
   font-size: 1.6rem;
 }
 
+#app[data-theme='light-mode'] {
+  --fontColor: #000;
+  --bgColor: #fff;
+}
+
+#app[data-theme='dark-mode'] {
+  --fontColor: #fff;
+  --bgColor: #2b3945;
+  --bgColor2: #202c37;
+}
+
 .filters {
   @include flex-center-align;
-  justify-content: space-between;
   flex-wrap: wrap;
+  background-color: var(--bgColor2);
   height: 13rem;
   padding: 0 1.3rem;
-  margin: 3rem 0;
 
   @include device-desktop {
-    height: 7rem;
-    margin: 5rem 16rem 0 16rem;
-    padding: 0;
+    justify-content: space-between;
+    padding: 3rem 16rem;
   }
+}
+
+.label {
+  font-weight: 600;
 }
 
 </style>

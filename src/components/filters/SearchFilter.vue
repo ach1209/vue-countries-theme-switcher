@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: Fix dark mode option -->
   <div class="input-container">
     <SearchIcon class="search-icon"></SearchIcon>
     <input type="text" placeholder="Search for a country..." class="search">
@@ -32,10 +31,11 @@ export default {
 
 .search {
   width: calc(100vw - 2.6rem);
+  @include mode-colors;
   padding: 1.4rem 1.4rem 1.4rem 4.5rem;
   border: none;
   border-radius: 3px;
-  box-shadow: 0 1px 3px 1px rgba($boxShadowLight, 0.82);
+  box-shadow: 0 0px 2px rgba($black, 0.25);
 
   @include device-desktop {
     width: 40rem;

@@ -1,12 +1,12 @@
 <template>
-  <header class="main-header" :class="[isToggled ? 'dark-mode' : '']">
+  <header class="main-header">
     <router-link :to="{name: 'home'}" class="main-header__title">Where in the world?</router-link>
-    <div class="mode-toggle" @click="switchMode">
-      <div v-if="!isToggled" class="mode-toggle--dark fw--600">
+    <div class="theme-toggle" @click="switchTheme">
+      <div v-if="!isToggled" class="theme-toggle__icon">
         <MoonIcon></MoonIcon>
         <span>Dark Mode</span>
       </div>
-      <div v-else class="mode-toggle--light fw--600">
+      <div v-else class="theme-toggle__icon">
         <SunIcon></SunIcon>
         <span>Light Mode</span>
       </div>
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import { eventBus } from '../main'
 import { SunIcon, MoonIcon } from 'vue-feather-icons'
 
 export default {
@@ -30,9 +29,16 @@ export default {
     }
   },
   methods: {
-    switchMode: function() {
-      this.isToggled = !this.isToggled;
-      eventBus.$emit('toggleMode', this.isToggled);
+    switchTheme() {
+      const app = document.getElementById('app');
+      
+      if (app.getAttribute('data-theme') == 'light-mode') {
+        app.setAttribute('data-theme', 'dark-mode');
+        this.isToggled = !this.isToggled;
+      } else {
+        app.setAttribute('data-theme', 'light-mode');
+        this.isToggled = !this.isToggled;
+      }
     }
   }
 }
@@ -44,7 +50,9 @@ export default {
   width: 100%;
   height: 6.4rem;
   padding: 0 2rem;
-  box-shadow: 0px 2px 2px rgba(0,0,0, 0.12);  
+  box-shadow: 0px 1px 2px rgba($black, 0.15);
+  position: relative;
+  @include mode-colors;
   @include flex-center-align;
   justify-content: space-between;
 
@@ -64,11 +72,11 @@ export default {
   }
 }
 
-.mode-toggle {
-  &--light,
-  &--dark {
+.theme-toggle {
+  &__icon {
+    @include flex-center-align;    
     cursor: pointer;
-    @include flex-center-align;
+    font-weight: 600;
 
     span {
       margin-left: 10px;
