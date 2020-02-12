@@ -1,25 +1,17 @@
 <template>
   <div id="app" :data-theme="theme">
     <AppHeader></AppHeader>
-    <div v-if="$route.name === 'home'" class="filters">
-      <SearchFilter></SearchFilter>
-      <DropdownFilter></DropdownFilter>
-    </div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import AppHeader from './components/layout/AppHeader';
-import SearchFilter from './components/filters/SearchFilter';
-import DropdownFilter from './components/filters/DropdownFilter';
 
 export default {
   name: 'app',
   components: {
-    AppHeader,
-    SearchFilter,
-    DropdownFilter
+    AppHeader
   },
   data() {
     return {
@@ -59,19 +51,6 @@ body {
   --fontColor: #fff;
   --bgColor: #2b3945;
   --bgColor2: #202c37;
-}
-
-.filters {
-  @include flex-center-align;
-  flex-wrap: wrap;
-  background-color: var(--bgColor2);
-  height: 13rem;
-  padding: 0 1.3rem;
-
-  @include device-desktop {
-    justify-content: space-between;
-    padding: 3rem 16rem;
-  }
 }
 
 .label {
