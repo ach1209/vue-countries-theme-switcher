@@ -1,10 +1,10 @@
-import CardDeck from './components/card/CardDeck.vue';
-import CardProfile from './components/card/view/CardProfile.vue';
+import Home from './components/layout/Home.vue';
+import CardProfile from './components/view/CardProfile.vue';
 
 const routes = [
   {
     path: '/',
-    component: CardDeck,
+    component: Home,
     name: 'home'
   },
   {

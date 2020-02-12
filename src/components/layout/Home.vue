@@ -1,5 +1,5 @@
 <template>
-  <div class="card-deck">
+  <div class="home-container">
     <router-link :to="{name: 'country', params: { id: country.name }}" v-for="country in showCountries" :key="country.id" class="card">
       <img class="card__image" :src="country.flag"/>
       <div class="card__details">
@@ -16,7 +16,7 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'CardDeck',
+  name: 'Home',
   data() {
     return {
       isToggled: false
@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss">
 
-.card-deck {
+.home-container {
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
