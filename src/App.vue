@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import AppHeader from './components/AppHeader';
+import AppHeader from './components/layout/AppHeader';
 import SearchFilter from './components/filters/SearchFilter';
 import DropdownFilter from './components/filters/DropdownFilter';
 
