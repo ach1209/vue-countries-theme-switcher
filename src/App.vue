@@ -1,5 +1,5 @@
 <template>
-  <div id="app" data-theme="light-mode">
+  <div id="app" :data-theme="theme">
     <AppHeader></AppHeader>
     <div v-if="$route.name === 'home'" class="filters">
       <SearchFilter></SearchFilter>
@@ -20,6 +20,11 @@ export default {
     AppHeader,
     SearchFilter,
     DropdownFilter
+  },
+  data() {
+    return {
+      theme: localStorage.getItem('current-theme')
+    }
   },
   created() {
     this.$store.dispatch('loadCountries');

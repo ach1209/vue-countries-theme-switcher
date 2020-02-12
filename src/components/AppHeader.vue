@@ -25,19 +25,25 @@ export default {
   },
   data() {
     return {
-      isToggled: false
+      isToggled: localStorage.getItem('toggle-state')
     }
   },
   methods: {
     switchTheme() {
       const app = document.getElementById('app');
       
-      if (app.getAttribute('data-theme') == 'light-mode') {
+      if (app.getAttribute('data-theme') == 'light-mode' || app.getAttribute('data-theme') == null) {
         app.setAttribute('data-theme', 'dark-mode');
         this.isToggled = !this.isToggled;
+        
+        localStorage.setItem('toggle-state', this.isToggled);
+        localStorage.setItem('current-theme', 'dark-mode');
       } else {
         app.setAttribute('data-theme', 'light-mode');
         this.isToggled = !this.isToggled;
+
+        localStorage.setItem('toggle-state', this.isToggled);
+        localStorage.setItem('current-theme', 'light-mode');
       }
     }
   }
