@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :data-theme="theme">
+  <div id="app" :class="toggledTheme">
     <AppHeader></AppHeader>
     <router-view></router-view>
   </div>
@@ -15,7 +15,13 @@ export default {
   },
   data() {
     return {
-      theme: localStorage.getItem('current-theme')
+      toggledTheme: localStorage.getItem('current-theme')
+    }
+  },
+  beforeCreate() {
+    if (localStorage.getItem('current-theme') == null) {
+      localStorage.setItem('current-theme', 'light-mode')
+      this.toggledTheme = localStorage.getItem('current-theme')
     }
   },
   created() {
@@ -42,12 +48,12 @@ body {
   font-size: 1.6rem;
 }
 
-#app[data-theme='light-mode'] {
+.light-mode {
   --fontColor: #000;
   --bgColor: #fff;
 }
 
-#app[data-theme='dark-mode'] {
+.dark-mode {
   --fontColor: #fff;
   --bgColor: #2b3945;
   --bgColor2: #202c37;

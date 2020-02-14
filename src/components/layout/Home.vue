@@ -133,8 +133,7 @@ input:focus::placeholder {
   width: 25rem;
   display: flex;
   flex-direction: column;
-  color: var(--fontColor);
-  background-color: var(--bgColor);
+  @include mode-colors;
   border-radius: 5px;
   box-shadow: 0px 1px 2px rgba($black, 0.25);
   text-decoration: none;

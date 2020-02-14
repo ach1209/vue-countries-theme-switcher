@@ -28,18 +28,24 @@ export default {
       isToggled: localStorage.getItem('toggle-state')
     }
   },
+  beforeCreate() {
+    if (localStorage.getItem('toggle-state') == null) {
+      localStorage.setItem('toggle-state', false);
+      this.isToggled = localStorage.getItem('toggle-state');   
+    }
+  },
   methods: {
     switchTheme() {
       const app = document.getElementById('app');
-      
-      if (app.getAttribute('data-theme') == 'light-mode' || app.getAttribute('data-theme') == null) {
-        app.setAttribute('data-theme', 'dark-mode');
+
+      if (localStorage.getItem('current-theme') == 'light-mode') {
+        app.className = 'dark-mode';
         this.isToggled = !this.isToggled;
-        
+
         localStorage.setItem('toggle-state', this.isToggled);
         localStorage.setItem('current-theme', 'dark-mode');
       } else {
-        app.setAttribute('data-theme', 'light-mode');
+        app.className = 'light-mode';
         this.isToggled = !this.isToggled;
 
         localStorage.setItem('toggle-state', this.isToggled);
