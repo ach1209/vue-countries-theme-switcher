@@ -25,13 +25,13 @@ export default {
   },
   data() {
     return {
-      isToggled: localStorage.getItem('toggle-state')
+      isToggled: JSON.parse(localStorage.getItem('toggle-state'))
     }
   },
   beforeCreate() {
     if (localStorage.getItem('toggle-state') == null) {
       localStorage.setItem('toggle-state', false);
-      this.isToggled = localStorage.getItem('toggle-state');   
+      this.isToggled = JSON.parse(localStorage.getItem('toggle-state'));
     }
   },
   methods: {
@@ -40,16 +40,14 @@ export default {
 
       if (localStorage.getItem('current-theme') == 'light-mode') {
         app.className = 'dark-mode';
-        this.isToggled = !this.isToggled;
-
-        localStorage.setItem('toggle-state', this.isToggled);
-        localStorage.setItem('current-theme', 'dark-mode');
+        localStorage.setItem('toggle-state', true);
+        this.isToggled = JSON.parse(localStorage.getItem('toggle-state'));
+        localStorage.setItem('current-theme', app.className);
       } else {
         app.className = 'light-mode';
-        this.isToggled = !this.isToggled;
-
-        localStorage.setItem('toggle-state', this.isToggled);
-        localStorage.setItem('current-theme', 'light-mode');
+        localStorage.setItem('toggle-state', false);
+        this.isToggled = JSON.parse(localStorage.getItem('toggle-state'));
+        localStorage.setItem('current-theme', app.className);
       }
     }
   }

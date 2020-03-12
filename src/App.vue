@@ -46,6 +46,7 @@ html {
 body {
   font-family: 'Nunito Sans', sans-serif;
   font-size: 1.6rem;
+  background-color: #fafafa;
 }
 
 .light-mode {
