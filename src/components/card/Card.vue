@@ -1,6 +1,6 @@
 <template>
   <div class="card-container">
-    <router-link :to="{name: 'country', params: { id: country.name }}" v-for="(country, index) in countriesList" :key="index" tag="div" class="card">
+    <router-link :to="{name: 'country', params: { id: country.name }}" v-for="(country, index) in countriesList.slice(0, this.allowedToShow)" :key="index" tag="div" class="card">
       <img class="card__image" :src="country.flag"/>
       <div class="card__details">
         <h3 class="card__title">{{ country.name }}</h3>
@@ -9,6 +9,7 @@
         <p><span class="label">Capital:</span> {{ country.capital }}</p>
       </div>
     </router-link>
+    <button v-if="allowedToShow < countriesList.length" class="btn btn--absolute" @click="allowMoreItems">Load More</button>
   </div>
 </template>
 
@@ -17,6 +18,16 @@ export default {
   name: 'Card',
   props: {
     countriesList: Array
+  },
+  data() {
+    return {
+      allowedToShow: 50
+    }
+  },
+  methods: {
+    allowMoreItems() {
+      this.allowedToShow += 50
+    }
   }
 }
 </script>
@@ -30,6 +41,7 @@ export default {
   grid-template-rows: max-content;
   grid-gap: 5rem;
   background-color: var(--bgColor2);
+  position: relative;
 
   @include device-desktop {
     margin: 0 auto;

@@ -9,6 +9,7 @@
   font-weight: 600;
   box-shadow: 0 0 3px rgba(204, 204, 204, 0.75);
   transition: background-color cubic-bezier(.34,.1,1,1.4) 0.3s;
+  cursor: pointer;
 
   &:hover,
   &:focus {
@@ -20,5 +21,26 @@
     padding: 0.5rem;
     margin: 1.5rem;
     margin-left: 0;
+  }
+
+  &--absolute {
+    width: 13rem;
+    padding: 1rem;
+    margin: 0 auto;    
+    position: absolute;
+    right: 0;
+    bottom: 2rem;
+    left: 0;
+    font-family: inherit;
+    font-size: inherit;
+    color: #ffffff;
+    background-color: $altColor;
+    box-shadow: none;
+    border: none;
+
+    &:hover,
+    &:focus {
+      background-color: $altColorHover;
+    }
   }
 }
