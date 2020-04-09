@@ -10,5 +10,5 @@ module.exports = {
       }
     }
   },
-  publicPath: 'vue-countries-theme-switcher'
+  publicPath: '/vue-countries-theme-switcher'
 }
