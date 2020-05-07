@@ -57,11 +57,11 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .card-profile {
   padding: 5rem 3rem;
-  @include mode-colors;
+  @include mode-colors(var(--fontColor), var(--bgColor2));
 
   @include device-desktop {
     padding: 5rem 15rem 0;

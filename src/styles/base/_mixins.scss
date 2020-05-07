@@ -10,12 +10,20 @@
   }
 }
 
-@mixin flex-center-align {
+@mixin flex-center {
   display: flex;
   align-items: center;
 }
 
-@mixin mode-colors {
-  color: var(--fontColor);
-  background-color: var(--bgColor);
+@mixin mode-colors($color1, $color2: var(--bgColor)) {
+  color: $color1;
+  background-color: $color2;
+}
+
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
 }

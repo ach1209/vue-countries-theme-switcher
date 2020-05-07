@@ -9,6 +9,5 @@ module.exports = {
         `
       }
     }
-  },
-  publicPath: '/vue-countries-theme-switcher'
+  }
 }

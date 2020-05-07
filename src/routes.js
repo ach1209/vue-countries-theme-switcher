@@ -3,7 +3,7 @@ import CardProfile from './components/view/CardProfile.vue';
 
 const routes = [
   {
-    path: '/vue-countries-theme-switcher',
+    path: '/',
     component: Home,
     name: 'home'
   },

@@ -1,19 +1,18 @@
 .btn {
-  @include flex-center-align;
-  @include mode-colors;  
+  @include flex-center;
+  justify-content: space-evenly;  
   width: 15rem;
   padding: 1rem 2rem;
-  justify-content: space-evenly;
   border-radius: 3px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 600;  
+  @include mode-colors(var(--fontColor));   
   box-shadow: 0 0 3px rgba(204, 204, 204, 0.75);
-  transition: background-color cubic-bezier(.34,.1,1,1.4) 0.3s;
   cursor: pointer;
 
   &:hover,
   &:focus {
-    background-color: rgba($bgHover, 0.45);
+    box-shadow: 0 0 3px 1px rgba(147, 145, 145, 0.46);
   }
 
   &--mini {
@@ -26,11 +25,8 @@
   &--absolute {
     width: 13rem;
     padding: 1rem;
-    margin: 0 auto;    
-    position: absolute;
-    right: 0;
-    bottom: 2rem;
-    left: 0;
+    margin: 0 auto;
+    @include position(absolute, null, 0, 2rem, 0);
     font-family: inherit;
     font-size: inherit;
     color: #ffffff;

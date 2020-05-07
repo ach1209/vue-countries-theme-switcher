@@ -54,20 +54,20 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .main-header {
   width: 100%;
   height: 6.4rem;
   padding: 0 2rem;
   box-shadow: 0px 1px 2px rgba($black, 0.15);
-  position: relative;
-  @include mode-colors;
-  @include flex-center-align;
+  @include position(relative);
+  @include mode-colors(var(--fontColor));
+  @include flex-center;
   justify-content: space-between;
 
   @include device-desktop {
-    padding: 0 7rem; 
+    padding: 0 15rem; 
   }
 
   &__title {
@@ -84,12 +84,12 @@ export default {
 
 .theme-toggle {
   &__icon {
-    @include flex-center-align;    
+    @include flex-center;    
     cursor: pointer;
     font-weight: 600;
 
     span {
-      margin-left: 10px;
+      margin-left: 1rem;
     }
   }
 }

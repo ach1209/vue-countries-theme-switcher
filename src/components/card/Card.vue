@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .card-container {
   display: grid;
@@ -41,11 +41,11 @@ export default {
   grid-template-rows: max-content;
   grid-gap: 5rem;
   background-color: var(--bgColor2);
-  position: relative;
+  @include position(relative);
 
   @include device-desktop {
     margin: 0 auto;
-    padding: 5rem 15rem;
+    padding: 0 15rem 3rem;
   }
 }
 
@@ -53,17 +53,18 @@ export default {
   width: 25rem;
   display: flex;
   flex-direction: column;
-  @include mode-colors;
-  border-radius: 5px;
-  box-shadow: 0px 1px 2px rgba($black, 0.25);
+  @include mode-colors(var(--fontColor));
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba($black, 0.25);
   text-decoration: none;
-  transition: transform cubic-bezier(.34,.1,1,1.4) 0.3s;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;
 
   &__image {
     width: 100%;
     height: 17rem;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
   }
 
   &__details {
@@ -77,8 +78,8 @@ export default {
 
   &:hover,
   &:focus {
-    transform: translateY(-2rem);
-    cursor: pointer;
+    box-shadow: 0 1px 2px rgba($black, 0.25),
+                0 0 0.5rem rgba($black, 0.25);
   }
 }
 
