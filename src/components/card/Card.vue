@@ -1,53 +1,39 @@
 <template>
-  <div class="card-container">
-    <router-link :to="{name: 'country', params: { id: country.name }}" v-for="(country, index) in countriesList.slice(0, this.allowedToShow)" :key="index" tag="div" class="card">
-      <img class="card__image" :src="country.flag"/>
-      <div class="card__details">
-        <h3 class="card__title">{{ country.name }}</h3>
-        <p><span class="label">Population:</span> {{ country.population.toLocaleString() }}</p>
-        <p><span class="label">Region:</span> {{ country.region }}</p>
-        <p><span class="label">Capital:</span> {{ country.capital }}</p>
-      </div>
-    </router-link>
-    <button v-if="allowedToShow < countriesList.length" class="btn btn--absolute" @click="allowMoreItems">Load More</button>
-  </div>
+  <router-link :to="{name: 'country', params: { id: name }}" tag="div" class="card">
+    <img class="card__image" :src="img"/>
+    <div class="card__details">
+      <h3 class="card__title">{{ name }}</h3>
+      <p><span class="label">Population:</span> {{ population.toLocaleString() }}</p>
+      <p><span class="label">Region:</span> {{ region }}</p>
+      <p><span class="label">Capital:</span> {{ capital }}</p>
+    </div>
+  </router-link>
 </template>
 
 <script>
 export default {
   name: 'Card',
   props: {
-    countriesList: Array
-  },
-  data() {
-    return {
-      allowedToShow: 50
-    }
-  },
-  methods: {
-    allowMoreItems() {
-      this.allowedToShow += 50
+    img: {
+      type: String
+    },
+    name: {
+      type: String
+    },
+    population: {
+      type: Number
+    },
+    region: {
+      type: String
+    },
+    capital: {
+      type: String
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
-.card-container {
-  display: grid;
-  justify-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
-  grid-template-rows: max-content;
-  grid-gap: 5rem;
-  background-color: var(--bgColor2);
-  @include position(relative);
-
-  @include device-desktop {
-    margin: 0 auto;
-    padding: 0 15rem 3rem;
-  }
-}
 
 .card {
   width: 25rem;
