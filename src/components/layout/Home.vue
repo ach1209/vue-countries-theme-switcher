@@ -4,7 +4,17 @@
       <SearchInput v-model="search"></SearchInput>
       <SelectInput v-model="selectedRegion"></SelectInput>
     </div>
-    <CardContainer :countriesList="allCountries"></CardContainer>
+    <CardContainer>
+      <Card
+        v-for="country in allCountries.slice(0, this.allowedToShow)" :key="country.demonym"
+        :img="country.flag"
+        :name="country.name"
+        :population="country.population"
+        :region="country.region"
+        :capital="country.capital">
+      </Card>
+      <button v-if="allowedToShow < allCountries.length" class="btn btn--absolute" @click="allowMoreItems">Load More</button>
+    </CardContainer>
   </div>
 </template>
 
@@ -13,19 +23,22 @@ import { mapGetters } from 'vuex'
 import SearchInput from '@/components/input/SearchInput'
 import SelectInput from '@/components/input/SelectInput'
 import CardContainer from '@/components/card/CardContainer'
+import Card from '@/components/card/Card'
 
 export default {
   name: 'Home',
   components: {
     SearchInput,
     SelectInput,
-    CardContainer
+    CardContainer,
+    Card
   },
   data() {
     return {
       isToggled: false,
       selectedRegion: '',
-      search: ''
+      search: '',
+      allowedToShow: 50
     }
   },
   computed: {
@@ -36,6 +49,11 @@ export default {
       } else {
         return this.showCountries.filter(country => country.region.toLowerCase().includes(this.selectedRegion.toLowerCase()));
       }
+    }
+  },
+  methods: {
+    allowMoreItems() {
+      this.allowedToShow += 50
     }
   }
 }

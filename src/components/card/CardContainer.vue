@@ -1,38 +1,12 @@
 <template>
   <div class="card-container">
-    <Card
-      v-for="country in countriesList.slice(0, this.allowedToShow)" :key="country.demonym"
-      :img="country.flag"
-      :name="country.name"
-      :population="country.population"
-      :region="country.region"
-      :capital="country.capital">
-    </Card>
-    <button v-if="allowedToShow < countriesList.length" class="btn btn--absolute" @click="allowMoreItems">Load More</button>
+    <slot></slot>
   </div>
 </template>
 
 <script>
-import Card from '@/components/card/Card'
-
 export default {
   name: 'CardContainer',
-  props: {
-    countriesList: Array
-  },
-  data() {
-    return {
-      allowedToShow: 50
-    }
-  },
-  components: {
-    Card
-  },
-  methods: {
-    allowMoreItems() {
-      this.allowedToShow += 50
-    }
-  }
 }
 </script>
 
