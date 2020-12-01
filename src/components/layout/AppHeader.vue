@@ -29,26 +29,30 @@ export default {
     }
   },
   beforeCreate() {
-    if (localStorage.getItem('toggle-state') == null) {
-      localStorage.setItem('toggle-state', false);
-      this.isToggled = JSON.parse(localStorage.getItem('toggle-state'));
+    if (localStorage.getItem('toggle-state') === null) {
+      this.setToggleState(false);
     }
   },
   methods: {
     switchTheme() {
       const app = document.getElementById('app');
 
-      if (localStorage.getItem('current-theme') == 'light-mode') {
+      if (localStorage.getItem('current-theme') === 'light-mode') {
         app.className = 'dark-mode';
-        localStorage.setItem('toggle-state', true);
-        this.isToggled = JSON.parse(localStorage.getItem('toggle-state'));
-        localStorage.setItem('current-theme', app.className);
+        this.setToggleState(true);
+        this.setLocalTheme(app.className);
       } else {
         app.className = 'light-mode';
-        localStorage.setItem('toggle-state', false);
-        this.isToggled = JSON.parse(localStorage.getItem('toggle-state'));
-        localStorage.setItem('current-theme', app.className);
+        this.setToggleState(false);
+        this.setLocalTheme(app.className);
       }
+    },
+    setToggleState(status) {
+      localStorage.setItem('toggle-state', status);
+      this.isToggled = JSON.parse(localStorage.getItem('toggle-state'));
+    },
+    setLocalTheme(theme) {
+      localStorage.setItem('current-theme', theme);
     }
   }
 }
