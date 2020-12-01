@@ -13,7 +13,13 @@
         :region="country.region"
         :capital="country.capital">
       </Card>
-      <button v-if="allowedToShow < allCountries.length" class="btn btn--absolute" @click="allowMoreItems">Load More</button>
+      <AppButton 
+        v-if="allowedToShow < allCountries.length"
+        btnMod="btn--absolute"
+        @click.native="allowMoreItems"
+      >
+        Load More
+      </AppButton>
     </CardContainer>
   </div>
 </template>
@@ -24,6 +30,7 @@ import SearchInput from '@/components/input/SearchInput'
 import SelectInput from '@/components/input/SelectInput'
 import CardContainer from '@/components/card/CardContainer'
 import Card from '@/components/card/Card'
+import AppButton from '@/components/layout/AppButton'
 
 export default {
   name: 'Home',
@@ -31,7 +38,8 @@ export default {
     SearchInput,
     SelectInput,
     CardContainer,
-    Card
+    Card,
+    AppButton
   },
   data() {
     return {

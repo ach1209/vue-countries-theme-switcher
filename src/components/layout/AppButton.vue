@@ -1,10 +1,30 @@
+<template>
+  <button class="btn" :class="btnMod">
+    <slot></slot>
+  </button>
+</template>
+
+<script>
+export default {
+  name: 'AppButton',
+  props: {
+    btnMod: String
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+
 .btn {
   @include flex-center;
   justify-content: space-evenly;  
   width: 15rem;
   padding: 1rem 2rem;
+  border: none;
   border-radius: 3px;
   text-decoration: none;
+  font-family: inherit;
+  font-size: inherit;
   font-weight: 600;  
   @include mode-colors(var(--fontColor));   
   box-shadow: 0 0 3px rgba(204, 204, 204, 0.75);
@@ -40,3 +60,5 @@
     }
   }
 }
+
+</style>

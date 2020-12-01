@@ -1,9 +1,9 @@
 <template>
   <div class="card-profile">
-    <router-link :to="{name: 'home'}" class="btn">
+    <AppButton @click.native="$router.go(-1)">
       <ArrowLeftIcon></ArrowLeftIcon>
       <span>Back</span>
-    </router-link>
+    </AppButton>
     <div class="card-profile-content">
       <img :src="countries.flag" class="card-profile__image"/>
       <div class="card-profile-content--right">
@@ -32,9 +32,13 @@
         </div>
         <div v-if="countries.borders != ''" class="card-profile-content__row">
           <span class="label">Border Countries:</span>
-          <router-link :to="{name: 'home'}" v-for="border in countries.borders" :key="border.id" class="btn btn--mini">
+          <AppButton 
+            btnMod="btn--mini" 
+            v-for="border in countries.borders" :key="border.id"
+            @click.native="$router.go(-1)"  
+          >
             {{ border }}
-          </router-link>
+          </AppButton>
         </div>
       </div>
     </div>
@@ -43,11 +47,13 @@
 
 <script>
 import { ArrowLeftIcon } from 'vue-feather-icons'
+import AppButton from '@/components/layout/AppButton'
 
 export default {
   name: 'CardProfile',
   components: {
-    ArrowLeftIcon
+    ArrowLeftIcon,
+    AppButton
   },
   computed: {
     countries() {
