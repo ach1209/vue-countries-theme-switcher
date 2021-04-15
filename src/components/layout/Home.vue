@@ -43,7 +43,6 @@ export default {
   },
   data() {
     return {
-      isToggled: false,
       selectedRegion: '',
       search: '',
       allowedToShow: 50
