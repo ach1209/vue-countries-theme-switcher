@@ -3,8 +3,11 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import routes from './routes'
 import store from './store/store'
+import VueCompositionAPI from '@vue/composition-api'
 
 Vue.config.productionTip = false
+
+Vue.use(VueCompositionAPI)
 
 Vue.use(VueRouter);
 
