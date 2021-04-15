@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { computed } from '@vue/composition-api'
 import { ArrowLeftIcon } from 'vue-feather-icons'
 import AppButton from '@/components/layout/AppButton'
 
@@ -55,9 +56,13 @@ export default {
     ArrowLeftIcon,
     AppButton
   },
-  computed: {
-    countries() {
-      return this.$store.state.countries.find(country => country.name == this.$route.params.id)
+  setup(_props, context) {
+    const countries = computed(() => {
+      return context.root.$store.state.countries.find(country => country.name == context.root.$route.params.id) // Root is deprecated in Vue 3
+    })
+
+    return {
+      countries
     }
   }
 }

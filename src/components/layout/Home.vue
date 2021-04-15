@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { ref, computed } from '@vue/composition-api'
 import SearchInput from '@/components/input/SearchInput'
 import SelectInput from '@/components/input/SelectInput'
 import CardContainer from '@/components/card/CardContainer'
@@ -41,27 +41,33 @@ export default {
     Card,
     AppButton
   },
-  data() {
-    return {
-      isToggled: false,
-      selectedRegion: '',
-      search: '',
-      allowedToShow: 50
-    }
-  },
-  computed: {
-    ...mapGetters(['showCountries']),
-    allCountries() {
-      if (this.search != '') {
-        return this.showCountries.filter(country => country.name.toLowerCase().includes(this.search.toLowerCase()));
+  setup(_props, context) {
+    const selectedRegion = ref('')
+    const search = ref('')
+    let allowedToShow = ref(50)
+
+    const allCountries = computed(() => {
+      if (search.value != '') {
+        return context.root.$store.getters.showCountries.filter(country => {
+          return country.name.toLowerCase().includes(search.value.toLowerCase()) // Could have been one line, but separated to make it easier to read
+        })
       } else {
-        return this.showCountries.filter(country => country.region.toLowerCase().includes(this.selectedRegion.toLowerCase()));
+        return context.root.$store.getters.showCountries.filter(country => {
+          return country.region.toLowerCase().includes(selectedRegion.value.toLowerCase())
+        })
       }
+    })
+
+    function allowMoreItems() {
+      allowedToShow.value += 50
     }
-  },
-  methods: {
-    allowMoreItems() {
-      this.allowedToShow += 50
+
+    return {
+      selectedRegion,
+      search,
+      allowedToShow,
+      allCountries,
+      allowMoreItems
     }
   }
 }

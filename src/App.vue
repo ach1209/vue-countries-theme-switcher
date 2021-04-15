@@ -1,31 +1,32 @@
 <template>
-  <div id="app" :class="toggledTheme">
+  <div id="app" :class="toggledTheme" ref="head">
     <AppHeader></AppHeader>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import AppHeader from './components/layout/AppHeader';
+import { ref } from '@vue/composition-api'
+import AppHeader from './components/layout/AppHeader'
 
 export default {
   name: 'app',
   components: {
     AppHeader
   },
-  data() {
-    return {
-      toggledTheme: localStorage.getItem('current-theme')
-    }
-  },
-  beforeCreate() {
+  setup(_props, context) {
+    let toggledTheme = ref(localStorage.getItem('current-theme'))
+
+    context.root.$store.dispatch('loadCountries')
+
     if (localStorage.getItem('current-theme') == null) {
       localStorage.setItem('current-theme', 'light-mode')
-      this.toggledTheme = localStorage.getItem('current-theme')
+      toggledTheme.value = localStorage.getItem('current-theme')
     }
-  },
-  created() {
-    this.$store.dispatch('loadCountries');
+
+    return {
+      toggledTheme
+    }
   }
 }
 </script>

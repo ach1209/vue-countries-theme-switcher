@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const Api = axios.create({
   baseURL: 'https://restcountries.eu/rest/v2/all',
@@ -8,4 +8,4 @@ const Api = axios.create({
   }
 })
 
-export default Api;
+export default Api

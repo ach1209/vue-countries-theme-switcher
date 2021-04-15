@@ -13,17 +13,17 @@ const store = new Vuex.Store({
   },
   mutations: {
     setCountries(state, countries) {
-      state.countries = countries;
+      state.countries = countries
     }
   },
   actions: {
     loadCountries({commit}) {
       let apiFields = '?fields=name;capital;population;region;flag;borders;languages;currencies;nativeName;topLevelDomain;subregion'
       return Api.get(apiFields).then((response) => {
-        commit('setCountries', response.data);
-      }).catch(error => console.log(error));
+        commit('setCountries', response.data)
+      }).catch(error => console.log(error))
     }
   }
 })
 
-export default store;
+export default store
