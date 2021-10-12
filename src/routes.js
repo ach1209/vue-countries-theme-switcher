@@ -1,5 +1,4 @@
-import Home from './components/layout/Home.vue';
-import CardProfile from './components/view/CardProfile.vue';
+import Home from './components/view/Home.vue';
 
 const routes = [
   {
@@ -9,7 +8,7 @@ const routes = [
   },
   {
     path: '/country/:id',
-    component: CardProfile,
+    component: () => import(/* webpackChunkName: "card-profile" */ './components/view/CardProfile.vue'),
     name: 'country',
     params: true
   }
