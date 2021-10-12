@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{name: 'country', params: { id: name }}" tag="div" class="card">
-    <img class="card__image" :src="img"/>
+    <img class="card__image" :src="img" :alt="name"/>
     <div class="card__details">
       <h3 class="card__title">{{ name }}</h3>
       <p><span class="label">Population:</span> {{ population.toLocaleString() }}</p>

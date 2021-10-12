@@ -5,7 +5,7 @@
       <span>Back</span>
     </AppButton>
     <div class="card-profile-content">
-      <img :src="countries.flag" class="card-profile__image"/>
+      <img :src="countries.flag" :alt="countries.name" class="card-profile__image"/>
       <div class="card-profile-content--right">
         <h1 class="card-profile-content__heading">{{ countries.name }}</h1>
         <div class="card-profile-content__info">

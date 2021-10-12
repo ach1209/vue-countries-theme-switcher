@@ -18,7 +18,7 @@ const store = new Vuex.Store({
   },
   actions: {
     loadCountries({commit}) {
-      let apiFields = '?fields=name;capital;population;region;flag;borders;languages;currencies;nativeName;topLevelDomain;subregion'
+      let apiFields = '?fields=name,capital,population,region,flag,borders,languages,currencies,nativeName,topLevelDomain,subregion'
       return Api.get(apiFields).then((response) => {
         commit('setCountries', response.data);
       }).catch(error => console.log(error));
