@@ -1,6 +1,6 @@
 <template>
   <div class="select-container">
-    <select :value="optionValue" class="selections" @change="$emit('input', $event.target.value)">
+    <select :value="props.optionValue" class="selections" @change="$emit('input', $event.target.value)">
       <option value="" disabled>Filter by Region</option>
       <option value="Africa">Africa</option>
       <option value="Americas">Americas</option>
@@ -11,13 +11,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'SelectInput',
-  props: {
-    optionValue: String
-  }
-}
+<script setup>
+const props = defineProps({
+  optionValue: { type: String, required: false }
+})
 </script>
 
 <style lang="scss" scoped>

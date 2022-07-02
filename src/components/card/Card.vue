@@ -1,36 +1,23 @@
 <template>
-  <router-link :to="{name: 'country', params: { id: name }}" tag="div" class="card">
-    <img class="card__image" :src="img" :alt="name"/>
+  <router-link :to="{name: 'country', params: { id: props.name }}" class="card">
+    <img class="card__image" :src="props.img" :alt="props.name"/>
     <div class="card__details">
-      <h3 class="card__title">{{ name }}</h3>
-      <p><span class="label">Population:</span> {{ population.toLocaleString() }}</p>
-      <p><span class="label">Region:</span> {{ region }}</p>
-      <p><span class="label">Capital:</span> {{ capital }}</p>
+      <h3 class="card__title">{{ props.name }}</h3>
+      <p><span class="label">Population:</span> {{ props.population.toLocaleString() }}</p>
+      <p><span class="label">Region:</span> {{ props.region }}</p>
+      <p><span class="label">Capital:</span> {{ props.capital }}</p>
     </div>
   </router-link>
 </template>
 
-<script>
-export default {
-  name: 'Card',
-  props: {
-    img: {
-      type: String
-    },
-    name: {
-      type: String
-    },
-    population: {
-      type: Number
-    },
-    region: {
-      type: String
-    },
-    capital: {
-      type: String
-    }
-  }
-}
+<script setup>
+const props = defineProps({
+  img: { type: String, required: true },
+  name: { type: String, required: true },
+  population: { type: Number, required: true },
+  region: { type: String, required: true },
+  capital: { type: String, required: true }
+})
 </script>
 
 <style lang="scss" scoped>

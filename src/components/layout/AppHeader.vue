@@ -14,47 +14,37 @@
   </header>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { SunIcon, MoonIcon } from 'vue-feather-icons'
 
-export default {
-  name: 'AppHeader',
-  components: {
-    SunIcon,
-    MoonIcon
-  },
-  data() {
-    return {
-      isToggled: JSON.parse(localStorage.getItem('toggle-state'))
-    }
-  },
-  beforeCreate() {
-    if (localStorage.getItem('toggle-state') === null) {
-      this.setToggleState(false);
-    }
-  },
-  methods: {
-    switchTheme() {
-      const app = document.getElementById('app');
+const isToggled = ref(JSON.parse(localStorage.getItem('toggle-state')))
 
-      if (localStorage.getItem('current-theme') === 'light-mode') {
-        app.className = 'dark-mode';
-        this.setToggleState(true);
-        this.setLocalTheme(app.className);
-      } else {
-        app.className = 'light-mode';
-        this.setToggleState(false);
-        this.setLocalTheme(app.className);
-      }
-    },
-    setToggleState(status) {
-      localStorage.setItem('toggle-state', status);
-      this.isToggled = JSON.parse(localStorage.getItem('toggle-state'));
-    },
-    setLocalTheme(theme) {
-      localStorage.setItem('current-theme', theme);
-    }
+if (localStorage.getItem('toggle-state') === null) {
+  setToggleState(false)
+}
+
+function switchTheme() {
+  const app = document.getElementById('app')
+
+  if (localStorage.getItem('current-theme') === 'light-mode') {
+    app.className = 'dark-mode'
+    setToggleState(true)
+    setLocalTheme(app.className)
+  } else {
+    app.className = 'light-mode'
+    setToggleState(false)
+    setLocalTheme(app.className)
   }
+}
+
+function setToggleState(status) {
+  localStorage.setItem('toggle-state', status)
+  isToggled.value = JSON.parse(localStorage.getItem('toggle-state'))
+}
+
+function setLocalTheme(theme) {
+  localStorage.setItem('current-theme', theme)
 }
 </script>
 

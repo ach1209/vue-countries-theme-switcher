@@ -1,23 +1,17 @@
 <template>
   <div class="input-container">
     <SearchIcon class="search-icon"></SearchIcon>
-    <input type="text" class="search" :value="value" @input="$emit('input', $event.target.value)">
+    <input type="text" class="search" :value="props.value" @input="$emit('input', $event.target.value)">
     <label class="search__label">Search for a country...</label>
   </div>
 </template>
 
-<script>
+<script setup>
 import { SearchIcon } from 'vue-feather-icons'
 
-export default {
-  name: 'SearchInput',
-  props: {
-    value: String
-  },
-  components: {
-    SearchIcon
-  }
-}
+const props = defineProps({
+  value: { type: String, required: false }
+})
 </script>
 
 <style lang="scss" scoped>

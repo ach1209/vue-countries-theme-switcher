@@ -1,16 +1,13 @@
 <template>
-  <button class="btn" :class="btnMod">
+  <button class="btn" :class="props.btnMod">
     <slot></slot>
   </button>
 </template>
 
-<script>
-export default {
-  name: 'AppButton',
-  props: {
-    btnMod: String
-  }
-}
+<script setup>
+const props = defineProps({
+  btnMod: { type: String, required: false }
+})
 </script>
 
 <style lang="scss" scoped>
