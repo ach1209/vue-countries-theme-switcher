@@ -26,12 +26,12 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { useCountriesStore } from './store/countries'
-import SearchInput from '@/components/input/SearchInput'
-import SelectInput from '@/components/input/SelectInput'
-import CardContainer from '@/components/card/CardContainer'
-import Card from '@/components/card/Card'
-import AppButton from '@/components/layout/AppButton'
+import { useCountriesStore } from '../store/countries.js'
+import SearchInput from '@/components/input/SearchInput.vue'
+import SelectInput from '@/components/input/SelectInput.vue'
+import CardContainer from '@/components/card/CardContainer.vue'
+import Card from '@/components/card/Card.vue'
+import AppButton from '@/components/layout/AppButton.vue'
 
 const store = useCountriesStore()
 const selectedRegion = ref('')
@@ -39,7 +39,7 @@ const search = ref('')
 const allowedToShow = ref()
 
 const allCountries = computed(() => {
-  if (this.search != '') {
+  if (search.value != '') {
     return store.showCountries().filter(country => country.name.toLowerCase().includes(search.value.toLowerCase()))
   }
   return store.showCountries().filter(country => country.region.toLowerCase().includes(selectedRegion.value.toLowerCase()))

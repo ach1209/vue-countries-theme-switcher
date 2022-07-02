@@ -1,7 +1,7 @@
 <template>
   <div class="card-profile">
     <AppButton @click="$router.go(-1)">
-      <ArrowLeftIcon></ArrowLeftIcon>
+      <vue-feather type="arrow-left"></vue-feather>
       <span>Back</span>
     </AppButton>
     <div class="card-profile-content">
@@ -46,7 +46,6 @@
 </template>
 
 <script setup>
-import { ArrowLeftIcon } from 'vue-feather-icons'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCountriesStore } from './store/countries'

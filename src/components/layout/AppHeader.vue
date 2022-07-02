@@ -1,22 +1,25 @@
 <template>
   <header class="main-header">
-    <router-link :to="{name: 'home'}" class="main-header__title">Where in the world?</router-link>
-    <div class="theme-toggle" @click="switchTheme">
-      <div v-if="!isToggled" class="theme-toggle__icon">
-        <MoonIcon></MoonIcon>
+    <RouterLink :to="{name: 'home'}" class="main-header__title">Where in the world?</RouterLink>
+    <span 
+      class="theme-toggle" role="button"
+      @click="switchTheme"
+    >
+      <div v-if="!isToggled" class="theme-icon">
+        <vue-feather type="moon"></vue-feather>
         <span>Dark Mode</span>
       </div>
-      <div v-else class="theme-toggle__icon">
-        <SunIcon></SunIcon>
+      <div v-else class="theme-icon">
+        <vue-feather type="sun"></vue-feather>
         <span>Light Mode</span>
       </div>
-    </div>
+    </span>
   </header>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { SunIcon, MoonIcon } from 'vue-feather-icons'
+import { RouterLink } from 'vue-router'
 
 const isToggled = ref(JSON.parse(localStorage.getItem('toggle-state')))
 
@@ -49,7 +52,6 @@ function setLocalTheme(theme) {
 </script>
 
 <style lang="scss" scoped>
-
 .main-header {
   width: 100%;
   height: 6.4rem;
@@ -60,9 +62,7 @@ function setLocalTheme(theme) {
   @include flex-center;
   justify-content: space-between;
 
-  @include device-desktop {
-    padding: 0 15rem; 
-  }
+  @include device-desktop { padding: 0 15rem; }
 
   &__title {
     text-decoration: none;
@@ -70,22 +70,15 @@ function setLocalTheme(theme) {
     font-weight: 800;
     color: inherit;
 
-    @include device-desktop {
-      font-size: 1.8rem;
-    }
+    @include device-desktop { font-size: 1.8rem; }
   }
 }
 
-.theme-toggle {
-  &__icon {
-    @include flex-center;    
-    cursor: pointer;
-    font-weight: 600;
+.theme-icon {
+  @include flex-center;    
+  cursor: pointer;
+  font-weight: 600;
 
-    span {
-      margin-left: 1rem;
-    }
-  }
+  span { margin-left: 1rem; }
 }
-
 </style>

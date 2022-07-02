@@ -1,14 +1,15 @@
 <template>
   <div id="app" :class="toggledTheme">
-    <AppHeader></AppHeader>
-    <router-view></router-view>
+    <AppHeader />
+    <RouterView />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { RouterView } from 'vue-router'
 import { useCountriesStore } from './store/countries'
-import AppHeader from '@/components/layout/AppHeader'
+import AppHeader from '@/components/layout/AppHeader.vue'
 
 const store = useCountriesStore()
 const toggledTheme = ref(localStorage.getItem('current-theme'))
