@@ -40,9 +40,10 @@ const allowedToShow = ref()
 
 const allCountries = computed(() => {
   if (search.value != '') {
-    return store.showCountries().filter(country => country.name.toLowerCase().includes(search.value.toLowerCase()))
+    return store.showCountries.filter(country => country.name.toLowerCase().includes(search.value.toLowerCase()))
+  } else {
+    return store.showCountries.filter(country => country.region.toLowerCase().includes(selectedRegion.value.toLowerCase()))
   }
-  return store.showCountries().filter(country => country.region.toLowerCase().includes(selectedRegion.value.toLowerCase()))
 })
 
 function allowMoreItems() {

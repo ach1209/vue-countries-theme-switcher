@@ -7,7 +7,7 @@ export const useCountriesStore = defineStore({
   }),
   getters: {
     showCountries() {
-      this.countries
+      return this.countries
     } 
   },
   actions: {
@@ -15,7 +15,7 @@ export const useCountriesStore = defineStore({
       const fields = '?fields=name,capital,population,region,flag,borders,languages,currencies,nativeName,topLevelDomain,subregion'
       const response = await fetch(`https://restcountries.com/v2/all/${fields}`)
       const results = await response.json()
-      this.countries = results.data
+      this.countries = results
     }
   }
 })

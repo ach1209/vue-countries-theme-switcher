@@ -48,15 +48,13 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useCountriesStore } from './store/countries'
-import AppButton from '@/components/layout/AppButton'
+import { useCountriesStore } from '../store/countries.js'
+import AppButton from '@/components/layout/AppButton.vue'
 
 const store = useCountriesStore()
 const route = useRoute()
 
-const countries = computed(() => {
-  return store.showCountries().find(country => country.name == route.params.id)
-})
+const countries = computed(() => store.showCountries.find(country => country.name == route.params.id))
 </script>
 
 <style lang="scss" scoped>

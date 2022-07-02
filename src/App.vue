@@ -8,7 +8,7 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterView } from 'vue-router'
-import { useCountriesStore } from './store/countries'
+import { useCountriesStore } from './store/countries.js'
 import AppHeader from '@/components/layout/AppHeader.vue'
 
 const store = useCountriesStore()
