@@ -1,22 +1,10 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createApp } from 'vue'
+
 import App from './App.vue'
-import routes from './routes'
-import store from './store/store'
+import router from './router/routes'
 
-Vue.config.productionTip = false
+const app = createApp(App)
 
-Vue.use(VueRouter);
+app.use(router)
 
-const router = new VueRouter({
-  mode: 'history',
-  routes
-});
-
-export const eventBus = new Vue();
-
-new Vue({
-  render: h => h(App),
-  router,
-  store
-}).$mount('#app')
+app.mount('#app')
