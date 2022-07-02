@@ -5,29 +5,20 @@
   </div>
 </template>
 
-<script>
-import AppHeader from './components/layout/AppHeader';
+<script setup>
+import { ref } from 'vue'
+import { useCountriesStore } from './store/countries'
+import AppHeader from '@/components/layout/AppHeader'
 
-export default {
-  name: 'app',
-  components: {
-    AppHeader
-  },
-  data() {
-    return {
-      toggledTheme: localStorage.getItem('current-theme')
-    }
-  },
-  beforeCreate() {
-    if (localStorage.getItem('current-theme') == null) {
-      localStorage.setItem('current-theme', 'light-mode')
-      this.toggledTheme = localStorage.getItem('current-theme')
-    }
-  },
-  created() {
-    this.$store.dispatch('loadCountries');
-  }
+const store = useCountriesStore()
+const toggledTheme = ref(localStorage.getItem('current-theme'))
+
+if (localStorage.getItem('current-theme') == null) {
+  localStorage.setItem('current-theme', 'light-mode')
+  toggledTheme.value = localStorage.getItem('current-theme')
 }
+
+store.loadCountries()
 </script>
 
 <style lang="scss">

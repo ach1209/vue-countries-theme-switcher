@@ -1,6 +1,6 @@
 <template>
   <div class="card-profile">
-    <AppButton @click.native="$router.go(-1)">
+    <AppButton @click="$router.go(-1)">
       <ArrowLeftIcon></ArrowLeftIcon>
       <span>Back</span>
     </AppButton>
@@ -35,7 +35,7 @@
           <AppButton 
             btnMod="btn--mini" 
             v-for="border in countries.borders" :key="border.id"
-            @click.native="$router.go(-1)"  
+            @click="$router.go(-1)"  
           >
             {{ border }}
           </AppButton>
@@ -45,22 +45,19 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ArrowLeftIcon } from 'vue-feather-icons'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useCountriesStore } from './store/countries'
 import AppButton from '@/components/layout/AppButton'
 
-export default {
-  name: 'CardProfile',
-  components: {
-    ArrowLeftIcon,
-    AppButton
-  },
-  computed: {
-    countries() {
-      return this.$store.state.countries.find(country => country.name == this.$route.params.id)
-    }
-  }
-}
+const store = useCountriesStore()
+const route = useRoute()
+
+const countries = computed(() => {
+  return store.showCountries().find(country => country.name == route.params.id)
+})
 </script>
 
 <style lang="scss" scoped>

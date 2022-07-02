@@ -16,7 +16,7 @@
       <AppButton 
         v-if="allowedToShow < allCountries.length"
         btnMod="btn--absolute"
-        @click.native="allowMoreItems"
+        @click="allowMoreItems"
       >
         Load More
       </AppButton>
@@ -24,45 +24,29 @@
   </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex'
+<script setup>
+import { ref, computed } from 'vue'
+import { useCountriesStore } from './store/countries'
 import SearchInput from '@/components/input/SearchInput'
 import SelectInput from '@/components/input/SelectInput'
 import CardContainer from '@/components/card/CardContainer'
 import Card from '@/components/card/Card'
 import AppButton from '@/components/layout/AppButton'
 
-export default {
-  name: 'Home',
-  components: {
-    SearchInput,
-    SelectInput,
-    CardContainer,
-    Card,
-    AppButton
-  },
-  data() {
-    return {
-      selectedRegion: '',
-      search: '',
-      allowedToShow: 50
-    }
-  },
-  computed: {
-    ...mapGetters(['showCountries']),
-    allCountries() {
-      if (this.search != '') {
-        return this.showCountries.filter(country => country.name.toLowerCase().includes(this.search.toLowerCase()));
-      } else {
-        return this.showCountries.filter(country => country.region.toLowerCase().includes(this.selectedRegion.toLowerCase()));
-      }
-    }
-  },
-  methods: {
-    allowMoreItems() {
-      this.allowedToShow += 50
-    }
+const store = useCountriesStore()
+const selectedRegion = ref('')
+const search = ref('')
+const allowedToShow = ref()
+
+const allCountries = computed(() => {
+  if (this.search != '') {
+    return store.showCountries().filter(country => country.name.toLowerCase().includes(search.value.toLowerCase()))
   }
+  return store.showCountries().filter(country => country.region.toLowerCase().includes(selectedRegion.value.toLowerCase()))
+})
+
+function allowMoreItems() {
+  allowedToShow.value += 50
 }
 </script>
 
