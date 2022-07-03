@@ -1,22 +1,25 @@
 <template>
   <div class="input-container">
     <vue-feather type="search" class="search-icon"></vue-feather>
-    <input type="text" class="search" :value="props.value" @input="$emit('input', $event.target.value)">
+    <input 
+      type="text" class="search" aria-label="Search" 
+      :value="props.modelValue" 
+      @input="$emit('update:modelValue', $event.target.value)"
+    >
     <label class="search__label">Search for a country...</label>
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
-  value: { type: String, required: false }
+  modelValue: { type: String, required: false }
 })
+defineEmits(['update:modelValue'])
 </script>
 
 <style lang="scss" scoped>
 
-.input-container {
-  @include position(relative);
-}
+.input-container { @include position(relative); }
 
 .search-icon {
   @include position(absolute, 1.25rem, null, null, 2rem);
@@ -33,9 +36,7 @@ const props = defineProps({
   box-shadow: 0 0px 2px rgba($black, 0.25);
   transition: box-shadow 0.3s ease-in-out;
 
-  @include device-desktop {
-    width: 40rem;
-  }
+  @include device-desktop { width: 40rem; }
 
   &:hover,
   &:focus,

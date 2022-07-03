@@ -1,6 +1,6 @@
 <template>
   <div class="select-container">
-    <select :value="props.optionValue" class="selections" @change="$emit('input', $event.target.value)">
+    <select :value="props.optionValue" class="selections" @change="$emit('update:modelValue', $event.target.value)">
       <option value="" disabled>Filter by Region</option>
       <option value="Africa">Africa</option>
       <option value="Americas">Americas</option>
@@ -15,6 +15,7 @@
 const props = defineProps({
   optionValue: { type: String, required: false }
 })
+defineEmits(['update:modelValue'])
 </script>
 
 <style lang="scss" scoped>
@@ -64,9 +65,7 @@ const props = defineProps({
   }
 
   // IE Only
-  &::-ms-expand {
-    display: none;
-  }
+  &::-ms-expand { display: none; }
 }
 
 </style>
