@@ -5,7 +5,7 @@
       <h3 class="card__title">{{ props.name }}</h3>
       <p><span class="label">Population:</span> {{ props.population.toLocaleString() }}</p>
       <p><span class="label">Region:</span> {{ props.region }}</p>
-      <p><span class="label">Capital:</span> {{ props.capital }}</p>
+      <p v-if="props.capital"><span class="label">Capital:</span> {{ props.capital }}</p>
     </div>
   </router-link>
 </template>
@@ -16,7 +16,7 @@ const props = defineProps({
   name: { type: String, required: true },
   population: { type: Number, required: true },
   region: { type: String, required: true },
-  capital: { type: String, required: true }
+  capital: { type: String, required: false }
 })
 </script>
 
