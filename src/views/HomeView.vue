@@ -36,14 +36,13 @@ import AppButton from '@/components/layout/AppButton.vue'
 const store = useCountriesStore()
 const selectedRegion = ref('')
 const search = ref('')
-const allowedToShow = ref()
+const allowedToShow = ref(50)
 
 const allCountries = computed(() => {
   if (search.value != '') {
     return store.showCountries.filter(country => country.name.toLowerCase().includes(search.value.toLowerCase()))
-  } else {
-    return store.showCountries.filter(country => country.region.toLowerCase().includes(selectedRegion.value.toLowerCase()))
   }
+  return store.showCountries.filter(country => country.region.toLowerCase().includes(selectedRegion.value.toLowerCase()))
 })
 
 function allowMoreItems() {
