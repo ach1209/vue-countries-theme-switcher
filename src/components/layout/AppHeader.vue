@@ -28,7 +28,7 @@ if (localStorage.getItem('toggle-state') === null) {
 }
 
 function switchTheme() {
-  const app = document.getElementById('app')
+  const app = document.getElementById('app-content')
 
   if (localStorage.getItem('current-theme') === 'light-mode') {
     app.className = 'dark-mode'

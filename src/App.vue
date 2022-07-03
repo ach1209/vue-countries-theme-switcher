@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="toggledTheme">
+  <div id="app-content" :class="toggledTheme">
     <AppHeader />
     <RouterView />
   </div>
