@@ -6,7 +6,7 @@
     </AppButton>
     <div class="card-profile-content">
       <img :src="countries.flag" :alt="countries.name" class="card-profile__image"/>
-      <div class="card-profile-content--right">
+      <div class="card-profile-content__details">
         <h1 class="card-profile-content__heading">{{ countries.name }}</h1>
         <div class="card-profile-content__info">
           <p><span class="label">Native Name:</span> {{ countries.nativeName }}</p>
@@ -16,21 +16,11 @@
           <p><span class="label">Capital:</span> {{ countries.capital }}</p>
         </div>
         <div class="card-profile-content__info">
-          <p v-for="topLevel in countries.topLevelDomain" :key="topLevel.id">
-            <span class="label">Top Level Domain:</span> {{ topLevel }}
-          </p>
-          <p>
-            <span class="label">Currencies:</span>
-            <span v-for="(currency, index) in countries.currencies" :key="currency.id">
-            <span v-if="index != 0">, </span> {{ currency.name }}</span>
-          </p>
-          <p>
-            <span class="label">Languages:</span> 
-            <span v-for="(language, index) in countries.languages" :key="language.id">
-            <span v-if="index != 0">, </span> {{ language.name }}</span>
-          </p>
+          <p><span class="label">Top Level Domain:</span> {{ topLevelDomain }}</p>
+          <p><span class="label">Currencies:</span> {{ currencies }}</p>
+          <p><span class="label">Languages:</span> {{ languages }}</p>
         </div>
-        <div v-if="countries.borders != ''" class="card-profile-content__row">
+        <div v-if="countries.borders" class="card-profile-content__row">
           <span class="label">Border Countries:</span>
           <AppButton 
             btnMod="btn--mini" 
@@ -55,6 +45,21 @@ const store = useCountriesStore()
 const route = useRoute()
 
 const countries = computed(() => store.showCountries.find(country => country.name == route.params.id))
+
+const topLevelDomain = computed(() => {
+  const [index] = countries.value.topLevelDomain
+  return index
+})
+
+const currencies = computed(() => {
+  const [{ name }] = countries.value.currencies
+  return name
+})
+
+const languages = computed(() => {
+  const [{ name }] = countries.value.languages
+  return name
+})
 </script>
 
 <style lang="scss" scoped>
@@ -74,11 +79,9 @@ const countries = computed(() => store.showCountries.find(country => country.nam
     grid-gap: 8rem;
     margin-top: 6rem;
 
-    @include device-desktop {
-      grid-gap: 20rem;
-    }
+    @include device-desktop { grid-gap: 20rem; }
 
-    &--right {
+    &__details {
       @include device-desktop {
         display: grid;
         grid-template: 0.5fr / repeat(2, 1fr);
@@ -105,9 +108,7 @@ const countries = computed(() => store.showCountries.find(country => country.nam
       display: flex;
       flex-wrap: wrap;
 
-      span {
-        flex: 100%;
-      }
+      span { flex: 100%; }
     }
   }
 
