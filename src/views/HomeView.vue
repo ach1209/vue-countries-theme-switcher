@@ -5,14 +5,14 @@
       <SelectInput v-model="selectedRegion"></SelectInput>
     </div>
     <CardContainer>
-      <Card
+      <MainCard
         v-for="country in allCountries.slice(0, this.allowedToShow)" :key="country.demonym"
         :img="country.flag"
         :name="country.name"
         :population="country.population"
         :region="country.region"
         :capital="country.capital">
-      </Card>
+      </MainCard>
       <AppButton 
         v-if="allowedToShow < allCountries.length"
         btnMod="btn--absolute"
@@ -30,7 +30,7 @@ import { useCountriesStore } from '../store/countries.js'
 import SearchInput from '@/components/input/SearchInput.vue'
 import SelectInput from '@/components/input/SelectInput.vue'
 import CardContainer from '@/components/card/CardContainer.vue'
-import Card from '@/components/card/Card.vue'
+import MainCard from '@/components/card/MainCard.vue'
 import AppButton from '@/components/layout/AppButton.vue'
 
 const store = useCountriesStore()

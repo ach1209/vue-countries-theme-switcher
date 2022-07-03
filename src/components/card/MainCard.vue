@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{name: 'country', params: { id: props.name }}" class="card">
-    <img class="card__image" :src="props.img" :alt="props.name"/>
+    <img class="card__image" :src="props.img" :alt="props.name" />
     <div class="card__details">
       <h3 class="card__title">{{ props.name }}</h3>
       <p><span class="label">Population:</span> {{ props.population.toLocaleString() }}</p>
@@ -45,9 +45,7 @@ const props = defineProps({
     line-height: 3rem;
   }
 
-  &__title {
-    margin-bottom: 2rem;
-  }
+  &__title { margin-bottom: 2rem; }
 
   &:hover,
   &:focus {
