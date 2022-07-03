@@ -6,7 +6,7 @@
     </div>
     <CardContainer>
       <MainCard
-        v-for="country in allCountries.slice(0, this.allowedToShow)" :key="country.demonym"
+        v-for="country in allCountries.slice(0, allowedToShow)" :key="country.demonym"
         :img="country.flag"
         :name="country.name"
         :population="country.population"
