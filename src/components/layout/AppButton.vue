@@ -15,8 +15,7 @@ const props = defineProps({
 @use '@/styles/base/colors' as color;
 
 .btn {
-  @include mix.flex-center;
-  justify-content: space-evenly;  
+  @include mix.flex(center, space-evenly);
   width: 15rem;
   padding: 1rem 2rem;
   border: none;

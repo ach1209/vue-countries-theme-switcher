@@ -54,13 +54,13 @@ function allowMoreItems() {
 @use '@/styles/base/mixins' as mix;
 
 .filters {
-  @include mix.flex-center;
+  @include mix.flex(center);
   flex-wrap: wrap;
   background-color: var(--bgColor2);
   height: 17rem;
   padding: 0 1.3rem;
 
-  @include mix.device-desktop {
+  @include mix.device-min(1100px) {
     justify-content: space-between;
     padding: 0 15rem;
   }

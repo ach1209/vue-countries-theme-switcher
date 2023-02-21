@@ -62,8 +62,7 @@ function setLocalTheme(theme) {
   box-shadow: 0px 1px 2px rgba(color.$black, 0.15);
   @include mix.position(relative);
   @include mix.mode-colors(var(--fontColor));
-  @include mix.flex-center;
-  justify-content: space-between;
+  @include mix.flex(center, space-between);
 
   @include mix.device-min(1100px) { padding: 0 15rem; }
 
@@ -78,7 +77,7 @@ function setLocalTheme(theme) {
 }
 
 .theme-icon {
-  @include mix.flex-center;    
+  @include mix.flex(center);    
   cursor: pointer;
   font-weight: 600;
 
