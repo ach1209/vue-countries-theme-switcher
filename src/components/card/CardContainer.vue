@@ -8,14 +8,14 @@
 @use '@/styles/base/mixins' as mix;
 
 .card-container {
+  @include mix.position(relative);
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   grid-template-rows: max-content;
-  grid-gap: 5rem;
+  gap: 5rem;
   background-color: var(--bgColor2);
-  @include mix.position(relative);
-
+  
   @include mix.device-min(1100px) {
     margin: 0 auto;
     padding: 0 15rem 3rem;

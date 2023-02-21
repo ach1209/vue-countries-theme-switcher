@@ -17,9 +17,8 @@
         v-if="allowedToShow < allCountries.length"
         class="btn--alternate pos-ab-bottom"
         @click="allowMoreItems"
-      >
-        Load More
-      </AppButton>
+        btnText="Load More"
+      />
     </CardContainer>
   </div>
 </template>
