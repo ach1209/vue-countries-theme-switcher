@@ -6,7 +6,7 @@
       :value="props.modelValue" 
       @input="$emit('update:modelValue', $event.target.value)"
     >
-    <label class="search__label">Search for a country...</label>
+    <label class="search-label">Search for a country...</label>
   </div>
 </template>
 
@@ -21,24 +21,28 @@ defineEmits(['update:modelValue'])
 @use '@/styles/base/mixins' as mix;
 @use '@/styles/base/colors' as color;
 
-.input-container { @include mix.position(relative); }
+.input-container { 
+  @include mix.position(relative); 
+}
 
 .search-icon {
   @include mix.position(absolute, 1.25rem, null, null, 2rem);
-  color: #c4c4c4;
+  color: color.$gray;
 }
 
 .search {
+  @include mix.mode-colors(var(--fontColor));
   width: calc(100vw - 2.6rem);
   height: 5rem;
-  @include mix.mode-colors(var(--fontColor));
   padding-left: 6.5rem;
   border: none;
   border-radius: 0.5rem;
   box-shadow: 0 0px 2px rgba(color.$black, 0.25);
   transition: box-shadow 0.3s ease-in-out;
 
-  @include mix.device-min(1100px) { width: 40rem; }
+  @include mix.device-min(1100px) { 
+    width: 40rem; 
+  }
 
   &:hover,
   &:focus,
@@ -47,10 +51,10 @@ defineEmits(['update:modelValue'])
                 0 1px 7px rgba(color.$black, 0.15);
   }
 
-  &__label {
+  &-label {
     @include mix.position(absolute, 1.5rem, null, null, 7rem);
     width: auto;
-    color: #c4c4c4;
+    color: color.$gray;
     font-family: inherit;
     font-weight: 600;
     transition: opacity 0.2s ease-out,
@@ -58,7 +62,7 @@ defineEmits(['update:modelValue'])
     pointer-events: none;
   }
 
-  &:focus ~ &__label {
+  &:focus ~ &-label {
     opacity: 0;
     visibility: hidden;
   }
