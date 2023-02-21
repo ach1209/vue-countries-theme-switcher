@@ -21,6 +21,7 @@ const props = defineProps({
   vertical-align: baseline;
   width: 15rem;
   padding: 1rem 2rem;
+  background-color: color.$white;
 
   &--small {
     width: 10rem;
