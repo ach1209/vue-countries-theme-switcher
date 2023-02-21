@@ -63,12 +63,14 @@ const languages = computed(() => {
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/base/mixins' as mix;
+@use '@/styles/base/colors' as color;
 
 .card-profile {
   padding: 5rem 3rem;
-  @include mode-colors(var(--fontColor), var(--bgColor2));
+  @include mix.mode-colors(var(--fontColor), var(--bgColor2));
 
-  @include device-desktop {
+  @include mix.device-min(1100px) {
     padding: 5rem 15rem 0;
     height: calc(100vh - 5rem);
   }
@@ -79,10 +81,10 @@ const languages = computed(() => {
     grid-gap: 8rem;
     margin-top: 6rem;
 
-    @include device-desktop { grid-gap: 20rem; }
+    @include mix.device-min(1100px) { grid-gap: 20rem; }
 
     &__details {
-      @include device-desktop {
+      @include mix.device-min(1100px) {
         display: grid;
         grid-template: 0.5fr / repeat(2, 1fr);
         grid-auto-rows: max-content;
@@ -92,7 +94,7 @@ const languages = computed(() => {
     &__heading {
       margin-bottom: 2rem;
 
-      @include device-desktop {
+      @include mix.device-min(1100px) {
         grid-column: 1 / span 2;
         margin-top: 3rem;
       }
@@ -114,7 +116,7 @@ const languages = computed(() => {
 
   &__image {
     width: 100%;
-    box-shadow: 0 1px 2px rgba($black, 0.25);
+    box-shadow: 0 1px 2px rgba(color.$black, 0.25);
   }
 }
 

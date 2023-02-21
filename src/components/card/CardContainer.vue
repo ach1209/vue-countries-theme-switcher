@@ -5,6 +5,7 @@
 </template>
 
 <style lang="scss" scoped>
+@use '@/styles/base/mixins' as mix;
 
 .card-container {
   display: grid;
@@ -13,9 +14,9 @@
   grid-template-rows: max-content;
   grid-gap: 5rem;
   background-color: var(--bgColor2);
-  @include position(relative);
+  @include mix.position(relative);
 
-  @include device-desktop {
+  @include mix.device-min(1100px) {
     margin: 0 auto;
     padding: 0 15rem 3rem;
   }

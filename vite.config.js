@@ -10,15 +10,5 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `
-          @import '@/styles/base/_variables.scss';
-          @import '@/styles/base/_mixins.scss';
-        `
-      }
-    }
   }
 })

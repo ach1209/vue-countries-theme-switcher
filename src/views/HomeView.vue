@@ -51,15 +51,16 @@ function allowMoreItems() {
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/base/mixins' as mix;
 
 .filters {
-  @include flex-center;
+  @include mix.flex-center;
   flex-wrap: wrap;
   background-color: var(--bgColor2);
   height: 17rem;
   padding: 0 1.3rem;
 
-  @include device-desktop {
+  @include mix.device-desktop {
     justify-content: space-between;
     padding: 0 15rem;
   }

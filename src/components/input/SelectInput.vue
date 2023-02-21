@@ -19,13 +19,15 @@ defineEmits(['update:modelValue'])
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/base/mixins' as mix;
+@use '@/styles/base/colors' as color;
 
 .select-container {
-  @include position(relative);
+  @include mix.position(relative);
 
   &:before {
     content: '';
-    @include position(absolute, 2rem, 2.5rem);
+    @include mix.position(absolute, 2rem, 2.5rem);
     background-color: #c4c4c4;
     display: block;
     width: 0.1rem;
@@ -36,7 +38,7 @@ defineEmits(['update:modelValue'])
 
   &:after {
     content: '';
-    @include position(absolute, 2rem, 1.9rem);
+    @include mix.position(absolute, 2rem, 1.9rem);
     background-color: #c4c4c4;
     display: block;
     width: 0.1rem;
@@ -50,18 +52,18 @@ defineEmits(['update:modelValue'])
   width: 17rem;
   height: 5rem;
   padding-left: 1.3rem;
-  @include mode-colors(var(--fontColor));
+  @include mix.mode-colors(var(--fontColor));
   border: none;
   border-radius: 0.5rem;
-  box-shadow: 0 0px 2px rgba($black, 0.25);
+  box-shadow: 0 0px 2px rgba(color.$black, 0.25);
   appearance: none;
   transition: box-shadow 0.3s ease-in-out;
 
   &:hover,
   &:focus,
   &:active {
-    box-shadow: 0 0px 2px rgba($black, 0.25),
-                0 1px 7px rgba($black, 0.15);
+    box-shadow: 0 0px 2px rgba(color.$black, 0.25),
+                0 1px 7px rgba(color.$black, 0.15);
   }
 
   // IE Only

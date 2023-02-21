@@ -52,17 +52,20 @@ function setLocalTheme(theme) {
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/base/mixins' as mix;
+@use '@/styles/base/colors' as color;
+
 .main-header {
   width: 100%;
   height: 6.4rem;
   padding: 0 2rem;
-  box-shadow: 0px 1px 2px rgba($black, 0.15);
-  @include position(relative);
-  @include mode-colors(var(--fontColor));
-  @include flex-center;
+  box-shadow: 0px 1px 2px rgba(color.$black, 0.15);
+  @include mix.position(relative);
+  @include mix.mode-colors(var(--fontColor));
+  @include mix.flex-center;
   justify-content: space-between;
 
-  @include device-desktop { padding: 0 15rem; }
+  @include mix.device-min(1100px) { padding: 0 15rem; }
 
   &__title {
     text-decoration: none;
@@ -70,12 +73,12 @@ function setLocalTheme(theme) {
     font-weight: 800;
     color: inherit;
 
-    @include device-desktop { font-size: 1.8rem; }
+    @include mix.device-min(1100px) { font-size: 1.8rem; }
   }
 }
 
 .theme-icon {
-  @include flex-center;    
+  @include mix.flex-center;    
   cursor: pointer;
   font-weight: 600;
 

@@ -18,35 +18,37 @@ defineEmits(['update:modelValue'])
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/base/mixins' as mix;
+@use '@/styles/base/colors' as color;
 
-.input-container { @include position(relative); }
+.input-container { @include mix.position(relative); }
 
 .search-icon {
-  @include position(absolute, 1.25rem, null, null, 2rem);
+  @include mix.position(absolute, 1.25rem, null, null, 2rem);
   color: #c4c4c4;
 }
 
 .search {
   width: calc(100vw - 2.6rem);
   height: 5rem;
-  @include mode-colors(var(--fontColor));
+  @include mix.mode-colors(var(--fontColor));
   padding-left: 6.5rem;
   border: none;
   border-radius: 0.5rem;
-  box-shadow: 0 0px 2px rgba($black, 0.25);
+  box-shadow: 0 0px 2px rgba(color.$black, 0.25);
   transition: box-shadow 0.3s ease-in-out;
 
-  @include device-desktop { width: 40rem; }
+  @include mix.device-min(1100px) { width: 40rem; }
 
   &:hover,
   &:focus,
   &:active {
-    box-shadow: 0 0px 2px rgba($black, 0.25),
-                0 1px 7px rgba($black, 0.15);
+    box-shadow: 0 0px 2px rgba(color.$black, 0.25),
+                0 1px 7px rgba(color.$black, 0.15);
   }
 
   &__label {
-    @include position(absolute, 1.5rem, null, null, 7rem);
+    @include mix.position(absolute, 1.5rem, null, null, 7rem);
     width: auto;
     color: #c4c4c4;
     font-family: inherit;

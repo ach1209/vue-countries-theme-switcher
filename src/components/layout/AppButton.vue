@@ -11,9 +11,11 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/base/mixins' as mix;
+@use '@/styles/base/colors' as color;
 
 .btn {
-  @include flex-center;
+  @include mix.flex-center;
   justify-content: space-evenly;  
   width: 15rem;
   padding: 1rem 2rem;
@@ -23,7 +25,7 @@ const props = defineProps({
   font-family: inherit;
   font-size: inherit;
   font-weight: 600;  
-  @include mode-colors(var(--fontColor));   
+  @include mix.mode-colors(var(--fontColor));   
   box-shadow: 0 0 3px rgba(204, 204, 204, 0.75);
   cursor: pointer;
 
@@ -43,17 +45,17 @@ const props = defineProps({
     width: 13rem;
     padding: 1rem;
     margin: 0 auto;
-    @include position(absolute, null, 0, 2rem, 0);
+    @include mix.position(absolute, null, 0, 2rem, 0);
     font-family: inherit;
     font-size: inherit;
     color: #ffffff;
-    background-color: $altColor;
+    background-color: color.$altColor;
     box-shadow: none;
     border: none;
 
     &:hover,
     &:focus {
-      background-color: $altColorHover;
+      background-color: color.$altColorHover;
     }
   }
 }

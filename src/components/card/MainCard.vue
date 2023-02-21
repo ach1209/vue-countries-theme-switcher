@@ -21,14 +21,16 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/base/mixins' as mix;
+@use '@/styles/base/colors' as color;
 
 .card {
   width: 25rem;
   display: flex;
   flex-direction: column;
-  @include mode-colors(var(--fontColor));
+  @include mix.mode-colors(var(--fontColor));
   border-radius: 0.5rem;
-  box-shadow: 0 1px 2px rgba($black, 0.25);
+  box-shadow: 0 1px 2px rgba(color.$black, 0.25);
   text-decoration: none;
   cursor: pointer;
   transition: box-shadow 0.3s ease-in-out;
@@ -49,8 +51,8 @@ const props = defineProps({
 
   &:hover,
   &:focus {
-    box-shadow: 0 1px 2px rgba($black, 0.25),
-                0 0 0.5rem rgba($black, 0.25);
+    box-shadow: 0 1px 2px rgba(color.$black, 0.25),
+                0 0 0.5rem rgba(color.$black, 0.25);
   }
 }
 
