@@ -1,0 +1,5 @@
+@use '../base/mixins/' as mix;
+
+.pos-ab-bottom {
+  @include mix.position(absolute, null, null, 2rem, null);
+}

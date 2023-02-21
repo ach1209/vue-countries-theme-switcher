@@ -23,12 +23,11 @@
         <div v-if="countries.borders" class="card-profile-content__row">
           <span class="label">Border Countries:</span>
           <AppButton 
-            btnMod="btn--mini" 
+            class="btn--small margin-15 margin-l-0"
             v-for="border in countries.borders" :key="border.id"
-            @click="$router.go(-1)"  
-          >
-            {{ border }}
-          </AppButton>
+            @click="$router.go(-1)"
+            :btnText="border"
+          />
         </div>
       </div>
     </div>
@@ -39,7 +38,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCountriesStore } from '../store/countries.js'
-import AppButton from '@/components/layout/AppButton.vue'
+import AppButton from '@/components/button/AppButton.vue'
 
 const store = useCountriesStore()
 const route = useRoute()
@@ -65,6 +64,11 @@ const languages = computed(() => {
 <style lang="scss" scoped>
 @use '@/styles/base/mixins' as mix;
 @use '@/styles/base/colors' as color;
+@use '../styles/utilities/margin';
+
+.vue-feather.vue-feather--arrow-left {
+  vertical-align: bottom;
+}
 
 .card-profile {
   padding: 5rem 3rem;

@@ -15,7 +15,7 @@
       </MainCard>
       <AppButton 
         v-if="allowedToShow < allCountries.length"
-        btnMod="btn--absolute"
+        class="btn--alternate pos-ab-bottom"
         @click="allowMoreItems"
       >
         Load More
@@ -31,7 +31,7 @@ import SearchInput from '@/components/input/SearchInput.vue'
 import SelectInput from '@/components/input/SelectInput.vue'
 import CardContainer from '@/components/card/CardContainer.vue'
 import MainCard from '@/components/card/MainCard.vue'
-import AppButton from '@/components/layout/AppButton.vue'
+import AppButton from '@/components/button/AppButton.vue'
 
 const store = useCountriesStore()
 const selectedRegion = ref('')
@@ -52,6 +52,7 @@ function allowMoreItems() {
 
 <style lang="scss" scoped>
 @use '@/styles/base/mixins' as mix;
+@use '../styles/utilities/position';
 
 .filters {
   @include mix.flex(center);

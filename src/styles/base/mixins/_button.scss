@@ -1,0 +1,18 @@
+@mixin button {
+  display: inline-block;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 0 3px rgba(204, 204, 204, 0.75);
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 3px 1px rgba(147, 145, 145, 0.46);
+  }
+}
