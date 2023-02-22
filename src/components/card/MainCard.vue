@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{name: 'country', params: { id: props.name }}" class="card-link">
+  <RouterLink :to="{name: 'country', params: { id: props.name }}" class="card-link">
     <div class="card">
       <img class="card-image" :src="props.img" :alt="props.name" />
       <div class="card-details">
@@ -9,10 +9,12 @@
         <p v-if="props.capital"><span class="text-label-600">Capital:</span> {{ props.capital }}</p>
       </div>      
     </div>
-  </router-link>
+  </RouterLink>
 </template>
 
 <script setup>
+import { RouterLink } from 'vue-router'
+
 const props = defineProps({
   img: { type: String, required: true },
   name: { type: String, required: true },

@@ -1,34 +1,30 @@
 <template>
   <div class="card-profile">
-    <AppButton @click="$router.go(-1)">
+    <AppButton @click="$router.go(-1)" btnText="Back">
       <vue-feather type="arrow-left"></vue-feather>
-      <span>Back</span>
     </AppButton>
-    <div class="card-profile-content">
-      <img :src="countries.flag" :alt="countries.name" class="card-profile__image"/>
-      <div class="card-profile-content__details">
-        <h1 class="card-profile-content__heading">{{ countries.name }}</h1>
-        <div class="card-profile-content__info">
-          <p><span class="label">Native Name:</span> {{ countries.nativeName }}</p>
-          <p><span class="label">Population:</span> {{ countries.population.toLocaleString() }}</p>
-          <p><span class="label">Region:</span> {{ countries.region }}</p>
-          <p><span class="label">Sub Region:</span> {{ countries.subregion }}</p>
-          <p><span class="label">Capital:</span> {{ countries.capital }}</p>
-        </div>
-        <div class="card-profile-content__info">
-          <p><span class="label">Top Level Domain:</span> {{ topLevelDomain }}</p>
-          <p><span class="label">Currencies:</span> {{ currencies }}</p>
-          <p><span class="label">Languages:</span> {{ languages }}</p>
-        </div>
-        <div v-if="countries.borders" class="card-profile-content__row">
-          <span class="label">Border Countries:</span>
+    <div class="profile-content">
+      <img :src="country.flag" :alt="country.name" class="profile-image"/>
+      <div class="profile-details">
+        <h1 class="profile-heading">{{ country.name }}</h1>
+        <ProfileBlocks 
+          :nativeName="country.nativeName"
+          :population="country.population.toLocaleString()"
+          :region="country.region"
+          :subregion="country.subregion"
+          :capital="country.capital"
+          :domain="topLevelDomain"
+          :currency="currencies"
+          :lang="languages"
+        />
+        <ProfileRow v-if="country.borders">
           <AppButton 
             class="btn--small margin-15 margin-l-0"
-            v-for="border in countries.borders" :key="border.id"
+            v-for="border in country.borders" :key="border.id"
             @click="$router.go(-1)"
             :btnText="border"
           />
-        </div>
+        </ProfileRow>
       </div>
     </div>
   </div>
@@ -37,28 +33,23 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { storeToRefs } from 'pinia'
 import { useCountriesStore } from '../store/countries.js'
+import { findIndexValue, findObjValue } from '../scripts/findValue.js'
+
 import AppButton from '@/components/button/AppButton.vue'
+import ProfileBlocks from '@/components/layout/ProfileBlocks.vue'
+import ProfileRow from '@/components/layout/ProfileRow.vue'
 
 const store = useCountriesStore()
+const { countries } = storeToRefs(store)
 const route = useRoute()
 
-const countries = computed(() => store.showCountries.find(country => country.name == route.params.id))
+const country = computed(() => countries.value.find(country => country.name == route.params.id))
 
-const topLevelDomain = computed(() => {
-  const [index] = countries.value.topLevelDomain
-  return index
-})
-
-const currencies = computed(() => {
-  const [{ name }] = countries.value.currencies
-  return name
-})
-
-const languages = computed(() => {
-  const [{ name }] = countries.value.languages
-  return name
-})
+const topLevelDomain = findIndexValue(country.value.topLevelDomain)
+const currencies = findObjValue(country.value.currencies)
+const languages = findObjValue(country.value.languages)
 </script>
 
 <style lang="scss" scoped>
@@ -71,57 +62,45 @@ const languages = computed(() => {
 }
 
 .card-profile {
-  padding: 5rem 3rem;
   @include mix.mode-colors(var(--fontColor), var(--bgColor2));
+  padding: 5rem 3rem;
 
   @include mix.device-min(1100px) {
     padding: 5rem 15rem 0;
     height: calc(100vh - 5rem);
   }
+}
 
-  &-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
-    grid-gap: 8rem;
-    margin-top: 6rem;
+.profile-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  gap: 8rem;
+  margin-top: 6rem;
 
-    @include mix.device-min(1100px) { grid-gap: 20rem; }
-
-    &__details {
-      @include mix.device-min(1100px) {
-        display: grid;
-        grid-template: 0.5fr / repeat(2, 1fr);
-        grid-auto-rows: max-content;
-      }
-    }
-
-    &__heading {
-      margin-bottom: 2rem;
-
-      @include mix.device-min(1100px) {
-        grid-column: 1 / span 2;
-        margin-top: 3rem;
-      }
-    }
-
-    &__info {
-      line-height: 3rem;
-      margin-bottom: 2rem;
-    }
-
-    &__row {
-      grid-column: 1 / -1;
-      display: flex;
-      flex-wrap: wrap;
-
-      span { flex: 100%; }
-    }
-  }
-
-  &__image {
-    width: 100%;
-    box-shadow: 0 1px 2px rgba(color.$black, 0.25);
+  @include mix.device-min(1100px) { 
+    gap: 20rem; 
   }
 }
 
+.profile-details {
+  @include mix.device-min(1100px) {
+    display: grid;
+    grid-template: 0.5fr / repeat(2, 1fr);
+    grid-auto-rows: max-content;
+  }
+}
+
+.profile-heading {
+  margin-bottom: 2rem;
+
+  @include mix.device-min(1100px) {
+    grid-column: 1 / span 2;
+    margin-top: 3rem;
+  }
+}
+
+.profile-image {
+  width: 100%;
+  box-shadow: 0 1px 2px rgba(color.$black, 0.25);
+}
 </style>

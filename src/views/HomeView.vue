@@ -25,7 +25,9 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { storeToRefs } from 'pinia'
 import { useCountriesStore } from '../store/countries.js'
+
 import SearchInput from '@/components/input/SearchInput.vue'
 import SelectInput from '@/components/input/SelectInput.vue'
 import CardContainer from '@/components/card/CardContainer.vue'
@@ -33,17 +35,19 @@ import MainCard from '@/components/card/MainCard.vue'
 import AppButton from '@/components/button/AppButton.vue'
 
 const store = useCountriesStore()
+const { countries } = storeToRefs(store)
+
 const selectedRegion = ref('')
 const search = ref('')
-const allowedToShow = ref(50)
 
 const allCountries = computed(() => {
   if (search.value != '') {
-    return store.showCountries.filter(country => country.name.toLowerCase().includes(search.value.toLowerCase()))
+    return countries.value.filter(country => country.name.toLowerCase().includes(search.value.toLowerCase()))
   }
-  return store.showCountries.filter(country => country.region.toLowerCase().includes(selectedRegion.value.toLowerCase()))
+  return countries.value.filter(country => country.region.toLowerCase().includes(selectedRegion.value.toLowerCase()))
 })
 
+const allowedToShow = ref(50)
 function allowMoreItems() {
   allowedToShow.value += 50
 }

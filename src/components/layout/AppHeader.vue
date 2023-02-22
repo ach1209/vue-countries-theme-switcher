@@ -1,10 +1,7 @@
 <template>
   <header class="main-header">
     <RouterLink :to="{name: 'home'}" class="main-header__title">Where in the world?</RouterLink>
-    <span 
-      class="theme-toggle" role="button"
-      @click="switchTheme"
-    >
+    <span class="theme-toggle" role="button" @click="switchTheme">
       <div v-if="!isToggled" class="theme-icon">
         <vue-feather type="moon"></vue-feather>
         <span>Dark Mode</span>
@@ -56,15 +53,17 @@ function setLocalTheme(theme) {
 @use '@/styles/base/colors' as color;
 
 .main-header {
+  @include mix.mode-colors(var(--fontColor));
+  @include mix.position(relative);
+  @include mix.flex(center, space-between);
   width: 100%;
   height: 6.4rem;
   padding: 0 2rem;
   box-shadow: 0px 1px 2px rgba(color.$black, 0.15);
-  @include mix.position(relative);
-  @include mix.mode-colors(var(--fontColor));
-  @include mix.flex(center, space-between);
 
-  @include mix.device-min(1100px) { padding: 0 15rem; }
+  @include mix.device-min(1100px) { 
+    padding: 0 15rem; 
+  }
 
   &__title {
     text-decoration: none;
@@ -72,7 +71,9 @@ function setLocalTheme(theme) {
     font-weight: 800;
     color: inherit;
 
-    @include mix.device-min(1100px) { font-size: 1.8rem; }
+    @include mix.device-min(1100px) { 
+      font-size: 1.8rem; 
+    }
   }
 }
 
@@ -81,6 +82,8 @@ function setLocalTheme(theme) {
   cursor: pointer;
   font-weight: 600;
 
-  span { margin-left: 1rem; }
+  span { 
+    margin-left: 1rem; 
+  }
 }
 </style>

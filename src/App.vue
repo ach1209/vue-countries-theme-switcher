@@ -11,15 +11,15 @@ import { RouterView } from 'vue-router'
 import { useCountriesStore } from './store/countries.js'
 import AppHeader from '@/components/layout/AppHeader.vue'
 
-const store = useCountriesStore()
 const toggledTheme = ref(localStorage.getItem('current-theme'))
 
 if (localStorage.getItem('current-theme') == null) {
   localStorage.setItem('current-theme', 'light-mode')
   toggledTheme.value = localStorage.getItem('current-theme')
 }
-
-store.loadCountries()
+const store = useCountriesStore()
+const { loadCountries } = store
+loadCountries()
 </script>
 
 <style lang="scss">
@@ -32,9 +32,5 @@ store.loadCountries()
   --fontColor: #fff;
   --bgColor: #2b3945;
   --bgColor2: #202c37;
-}
-
-.label {
-  font-weight: 600;
 }
 </style>
