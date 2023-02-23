@@ -1,6 +1,6 @@
 <template>
   <div class="select-container">
-    <select :value="props.optionValue" class="selections" @change="$emit('update:modelValue', $event.target.value)">
+    <select :value="props.optionValue" class="selections" @change="$emit('update:option-value', $event.target.value)">
       <option value="" disabled>Filter by Region</option>
       <option v-for="value in values" :key="value" :value="value">{{ value }}</option>
     </select>
@@ -12,9 +12,10 @@ const props = defineProps({
   optionValue: { type: String, required: false }
 })
 
-const values = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
+const emit = defineEmits(['update:option-value'])
+emit('update:option-value')
 
-defineEmits(['update:modelValue'])
+const values = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
 </script>
 
 <style lang="scss" scoped>
@@ -63,5 +64,4 @@ defineEmits(['update:modelValue'])
                 0 1px 7px rgba(color.$black, 0.15);
   }
 }
-
 </style>

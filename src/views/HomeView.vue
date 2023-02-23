@@ -1,8 +1,8 @@
 <template>
   <div class="home-container">
     <div v-if="$route.name === 'home'" class="filters">
-      <SearchInput v-model="search"></SearchInput>
-      <SelectInput v-model="selectedRegion"></SelectInput>
+      <SearchInput v-model:model-value="input.search"></SearchInput>
+      <SelectInput v-model:option-value="input.selected"></SelectInput>
     </div>
     <CardContainer>
       <MainCard
@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useCountriesStore } from '../store/countries.js'
 
@@ -38,14 +38,19 @@ import AppButton from '@/components/button/AppButton.vue'
 const store = useCountriesStore()
 const { countries } = storeToRefs(store)
 
-const selectedRegion = ref('')
-const search = ref('')
+const input = reactive({
+  selected: '',
+  search: ''
+})
 
 const allCountries = computed(() => {
-  if (search.value != '') {
-    return countries.value.filter(country => country.name.toLowerCase().includes(search.value.toLowerCase()))
+  if (input.search) {
+    return countries.value.filter(country => country.name.toLowerCase().includes(input.search.toLowerCase()))
   }
-  return countries.value.filter(country => country.region.toLowerCase().includes(selectedRegion.value.toLowerCase()))
+  if (input.selected) {
+    return countries.value.filter(country => country.region.toLowerCase().includes(input.selected.toLowerCase()))
+  }
+  return countries.value
 })
 
 const allowedToShow = ref(50)
@@ -70,5 +75,4 @@ function allowMoreItems() {
     padding: 0 15rem;
   }
 }
-
 </style>

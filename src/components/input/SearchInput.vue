@@ -4,7 +4,7 @@
     <input 
       type="text" class="search" aria-label="Search" 
       :value="props.modelValue" 
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="$emit('update:model-value', $event.target.value)"
     >
     <label class="search-label">Search for a country...</label>
   </div>
@@ -14,7 +14,9 @@
 const props = defineProps({
   modelValue: { type: String, required: false }
 })
-defineEmits(['update:modelValue'])
+
+const emits = defineEmits(['update:model-value'])
+emits('update:model-value')
 </script>
 
 <style lang="scss" scoped>
@@ -67,5 +69,4 @@ defineEmits(['update:modelValue'])
     visibility: hidden;
   }
 }
-
 </style>
