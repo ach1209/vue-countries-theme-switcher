@@ -51,6 +51,8 @@ const values = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
   width: 17rem;
   height: 5rem;
   padding-left: 1.3rem;
+  font-family: 'Nunito Sans', sans-serif;
+  color: darken(color.$gray, 50%);
   border: none;
   border-radius: 0.5rem;
   box-shadow: 0 0px 2px rgba(color.$black, 0.25);

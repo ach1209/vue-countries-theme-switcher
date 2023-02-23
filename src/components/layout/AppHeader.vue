@@ -1,7 +1,7 @@
 <template>
   <header class="main-header">
     <RouterLink :to="{name: 'home'}" class="main-header__title">Where in the world?</RouterLink>
-    <span class="theme-toggle" role="button" @click="switchTheme">
+    <span class="theme-toggle" role="button" tabindex="0" @click="switchTheme">
       <div v-if="!isToggled" class="theme-icon">
         <vue-feather type="moon"></vue-feather>
         <span>Dark Mode</span>

@@ -2,11 +2,11 @@
   <div class="input-container">
     <vue-feather type="search" class="search-icon"></vue-feather>
     <input 
-      type="text" class="search" aria-label="Search" 
+      type="text" class="search" name="Search Bar" 
       :value="props.modelValue" 
       @input="$emit('update:model-value', $event.target.value)"
     >
-    <label class="search-label">Search for a country...</label>
+    <label for="Search Bar" class="search-label">Search for a country...</label>
   </div>
 </template>
 
@@ -56,7 +56,7 @@ emits('update:model-value')
   &-label {
     @include mix.position(absolute, 1.5rem, null, null, 7rem);
     width: auto;
-    color: color.$gray;
+    color: darken(color.$gray, 40%);
     font-family: inherit;
     font-weight: 600;
     transition: opacity 0.2s ease-out,
