@@ -1,5 +1,5 @@
 <template>
-  <button class="btn">
+  <button class="btn" :class="{ 'btn--small': props.small, 'btn--alternate': props.alternate }">
     <slot></slot>
     {{ props.btnText }}
   </button>
@@ -7,7 +7,9 @@
 
 <script setup>
 const props = defineProps({
-  btnText: { type: String, required: false }
+  btnText: { type: String, required: false },
+  small: { type: Boolean, required: false },
+  alternate: { type: Boolean, required: false }
 })
 </script>
 

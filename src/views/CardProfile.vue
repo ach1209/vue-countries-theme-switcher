@@ -19,9 +19,10 @@
         />
         <ProfileRow v-if="country.borders">
           <AppButton 
-            class="btn--small margin-15 margin-l-0"
+            class="margin-15 margin-l-0"
             v-for="border in country.borders" :key="border.id"
             @click="$router.go(-1)"
+            small
             :btnText="border"
           />
         </ProfileRow>

@@ -15,8 +15,9 @@
       </MainCard>
       <AppButton 
         v-if="allowedToShow < allCountries.length"
-        class="btn--alternate pos-ab-bottom"
+        class="pos-ab-bottom"
         @click="allowMoreItems"
+        alternate
         btnText="Load More"
       />
     </CardContainer>
