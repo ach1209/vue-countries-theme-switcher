@@ -33,10 +33,11 @@ emits('update:model-value')
 }
 
 .search {
-  @include mix.mode-colors(var(--fontColor));
   width: calc(100vw - 2.6rem);
   height: 5rem;
   padding-left: 6.5rem;
+  color: var(--primary-font-color);
+  background-color: var(--component-bgColor-lightened);
   border: none;
   border-radius: 0.5rem;
   box-shadow: 0 0px 2px rgba(color.$black, 0.25);
@@ -56,7 +57,7 @@ emits('update:model-value')
   &-label {
     @include mix.position(absolute, 1.5rem, null, null, 7rem);
     width: auto;
-    color: darken(color.$gray, 40%);
+    color: var(--inputColor);
     font-family: inherit;
     font-weight: 600;
     transition: opacity 0.2s ease-out,

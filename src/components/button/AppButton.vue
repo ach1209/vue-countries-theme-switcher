@@ -18,12 +18,12 @@ const props = defineProps({
 @use '@/styles/base/colors' as color;
 
 .btn {
-  @include mix.mode-colors(var(--fontColor));  
   @include mix.button;
   vertical-align: baseline;
   width: 15rem;
   padding: 1rem 2rem;
-  background-color: color.$white;
+  color: var(--primary-font-color);
+  background-color: var(--component-bgColor-lightened);
 
   &--small {
     width: 10rem;
@@ -32,12 +32,12 @@ const props = defineProps({
 
   &--alternate {
     color: color.$white;
-    background-color: color.$altColor;
+    background-color: color.$blue;
     box-shadow: none;
 
     &:hover,
     &:focus {
-      background-color: color.$altColorHover;
+      background-color: color.$lighterBlue;
     }
   }
 }

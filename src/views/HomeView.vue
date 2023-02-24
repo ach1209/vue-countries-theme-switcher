@@ -66,7 +66,7 @@ function allowMoreItems() {
 .filters {
   @include mix.flex(center);
   flex-wrap: wrap;
-  background-color: var(--bgColor2);
+  background-color: var(--app-body-color);
   height: 17rem;
   padding: 0 1.3rem;
 

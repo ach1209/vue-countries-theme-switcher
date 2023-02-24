@@ -1,3 +1,24 @@
+@use './base/colors/' as color;
+
+// default variables for light theme
+:root,
+.light {
+  --primary-font-color: #{color.$black};
+  --component-bgColor: #{color.$white};
+  --component-bgColor-lightened: #{color.$white};
+  --app-body-color: #{color.$lightGray};
+  --inputColor: #{darken(color.$gray, 40%)};
+}
+
+// variables for dark mode theme
+.dark {
+  --primary-font-color: #{color.$white};
+  --component-bgColor: #{color.$darkBlue};
+  --component-bgColor-lightened: #{color.$darkBlueLightened};
+  --app-body-color: #{color.$darkBlue};
+  --inputColor: #{color.$white};
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +33,7 @@ html {
 body {
   font-family: 'Nunito Sans', sans-serif;
   font-size: 1.6rem;
-  background-color: #fafafa;
+  background-color: var(--app-body-color);
 }
 
 a {

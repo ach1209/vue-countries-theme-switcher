@@ -36,10 +36,11 @@ const props = defineProps({
 }
 
 .card {
-  @include mix.mode-colors(var(--fontColor));
   @include mix.flex;
   flex-direction: column;
   width: 25rem;
+  color: var(--primary-font-color);
+  background-color: var(--component-bgColor-lightened);
   border-radius: 0.5rem;
   box-shadow: 0 1px 2px rgba(color.$black, 0.25);
   transition: box-shadow 0.3s ease-in-out;

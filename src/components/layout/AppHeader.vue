@@ -1,7 +1,7 @@
 <template>
   <header class="main-header">
     <RouterLink :to="{name: 'home'}" class="main-header__title">Where in the world?</RouterLink>
-    <span class="theme-toggle" role="button" tabindex="0" @click="switchTheme">
+    <span class="theme-toggle" role="button" tabindex="0" @click="themeSwitch">
       <div v-if="!isToggled" class="theme-icon">
         <vue-feather type="moon"></vue-feather>
         <span>Dark Mode</span>
@@ -15,37 +15,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import themeSwitch, { isToggled, loadInitialIconState } from '@/scripts/theme.js'
 
-const isToggled = ref(JSON.parse(localStorage.getItem('toggle-state')))
-
-if (localStorage.getItem('toggle-state') === null) {
-  setToggleState(false)
-}
-
-function switchTheme() {
-  const app = document.getElementById('app-content')
-
-  if (localStorage.getItem('current-theme') === 'light-mode') {
-    app.className = 'dark-mode'
-    setToggleState(true)
-    setLocalTheme(app.className)
-  } else {
-    app.className = 'light-mode'
-    setToggleState(false)
-    setLocalTheme(app.className)
-  }
-}
-
-function setToggleState(status) {
-  localStorage.setItem('toggle-state', status)
-  isToggled.value = JSON.parse(localStorage.getItem('toggle-state'))
-}
-
-function setLocalTheme(theme) {
-  localStorage.setItem('current-theme', theme)
-}
+loadInitialIconState()
 </script>
 
 <style lang="scss" scoped>
@@ -53,12 +26,13 @@ function setLocalTheme(theme) {
 @use '@/styles/base/colors' as color;
 
 .main-header {
-  @include mix.mode-colors(var(--fontColor));
   @include mix.position(relative);
   @include mix.flex(center, space-between);
   width: 100%;
   height: 6.4rem;
   padding: 0 2rem;
+  color: var(--primary-font-color);
+  background-color: var(--component-bgColor-lightened);
   box-shadow: 0px 1px 2px rgba(color.$black, 0.15);
 
   @include mix.device-min(1100px) { 

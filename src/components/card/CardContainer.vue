@@ -14,7 +14,7 @@
   grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   grid-template-rows: max-content;
   gap: 5rem;
-  background-color: var(--bgColor2);
+  background-color: var(--app-body-color);
   
   @include mix.device-min(1100px) {
     margin: 0 auto;
