@@ -17,9 +17,7 @@
   background-color: var(--app-body-color);
   
   @include mix.device-min(1100px) {
-    margin: 0 auto;
     padding: 0 15rem 3rem;
   }
 }
-
 </style>
