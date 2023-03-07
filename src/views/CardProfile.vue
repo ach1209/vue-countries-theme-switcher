@@ -64,6 +64,7 @@ const languages = findObjValue(country.value.languages)
 
 .card-profile {
   color: var(--primary-font-color);
+  background-color: var(--app-body-color);
   padding: 5rem 3rem;
 
   @include mix.device-min(1100px) {
